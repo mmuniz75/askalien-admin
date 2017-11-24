@@ -1,15 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 
+import { IAnswer } from '../../model/Answer';
+import { AnswerService } from '../../services/answer.service';
+
 @Component({
   selector: 'app-topanswers',
   templateUrl: './topanswers.component.html',
-  styleUrls: ['./topanswers.component.css']
+  providers: [AnswerService]
 })
 export class TopanswersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _answerService : AnswerService) { }
+  
+    answers:IAnswer[];
+    errorMessage: string;
+    feedback:Boolean = false;
+  
+    ngOnInit() {
+      this.loadTopAnswers();
+    }
 
-  ngOnInit() {
-  }
+    loadTopAnswers(){
+      this._answerService.getTopAnswers(this.feedback).subscribe(
+        Answers => this.answers=Answers,
+        error => this.errorMessage = error
+      );
+    }
+  
 
 }

@@ -11,7 +11,7 @@
               <li>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" class="flat"> Just with feedback
+                    <input type="checkbox" class="flat" (ngModelChange)="loadTopAnswers()" [(ngModel)]="feedback" /> Just with feedback
                   </label>
                 </div>
               </li>
@@ -41,82 +41,10 @@
                 </thead>
 
                 <tbody>
-                  <tr class="even pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
-                    <td class=" last">
-                      <a routerLink="/questions">Questions</a>
-                    </td>
-                  </tr>
-                  <tr class="odd pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
-                    <td class=" last">
-                      <a routerLink="/questions">Questions</a>
-                    </td>
-                  </tr>
-                  <tr class="even pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
-                    <td class=" last">
-                      <a routerLink="/questions">Questions</a>
-                    </td>
-                  </tr>
-                  <tr class="odd pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
-                    <td class=" last">
-                      <a routerLink="/questions">Questions</a>
-                    </td>
-                  </tr>
-                  <tr class="even pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
-                    <td class=" last">
-                      <a routerLink="/questions">Questions</a>
-                    </td>
-                  </tr>
-                  <tr class="odd pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
-                    <td class=" last">
-                      <a routerLink="/questions">Questions</a>
-                    </td>
-                  </tr>
-                  <tr class="even pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
-                    <td class=" last">
-                      <a routerLink="/questions">Questions</a>
-                    </td>
-                  </tr>
-                  <tr class="odd pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
-                    <td class=" last">
-                      <a routerLink="/questions">Questions</a>
-                    </td>
-                  </tr>
-                  <tr class="even pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
-                    <td class=" last">
-                      <a routerLink="/questions">Questions</a>
-                    </td>
-                  </tr>
-                  <tr class="odd pointer">
-                    <td class=" ">198</td>
-                    <td class=" ">is Jesus Christ extra terrestrial?</td>
-                    <td class=" ">378</td>
+                  <tr class="even pointer" *ngFor="let answer of answers">
+                    <td class=" ">{{answer.number}}</td>
+                    <td class=" ">{{answer.question}}</td>
+                    <td class=" ">{{answer.clicks}}</td>
                     <td class=" last">
                       <a routerLink="/questions">Questions</a>
                     </td>
