@@ -4,27 +4,27 @@
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top">
         <i class="fa fa-question"></i> Total Questions</span>
-      <div class="count green">90,401</div>
+      <div class="count green">{{statistic.totalQuestion | number}}</div>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top">
         <i class="fa fa-users"></i> Frequent Users</span>
-      <div class="count">1,475</div>
+      <div class="count">{{statistic.totalFrequentUsers | number}}</div>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top">
         <i class="fa fa-user"></i> Total Users</span>
-      <div class="count">4,834</div>
+      <div class="count">{{statistic.totalUsers | number}}</div>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top">
         <i class="fa fa-flag-checkered"></i> Total Countries</span>
-      <div class="count">110</div>
+      <div class="count">{{statistic.totalCountries | number}}</div>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top">
         <i class="fa fa-lightbulb-o"></i> Total Answers</span>
-      <div class="count">1,209</div>
+      <div class="count">{{statistic.totalAnswers | number}}</div>
     </div>
   </div>
 
@@ -118,74 +118,11 @@
                 </thead>
 
                 <tbody>
-                  <tr class="even pointer">
-                    <td class=" ">01/11/2017 12:36</td>
-                    <td class=" ">174.28.16.20</td>
-                    <td class=" ">UNITED STATES</td>
-                    <td class=" ">medical technology</td>
-                    <td class=" last">
-                      <a routerLink="/question-detail">View</a>
-                    </td>
-                  </tr>
-                  <tr class="odd pointer">
-                    <td class=" ">01/11/2017 12:36</td>
-                    <td class=" ">174.28.16.20</td>
-                    <td class=" ">UNITED STATES</td>
-                    <td class=" ">medical technology</td>
-                    <td class=" last">
-                      <a routerLink="/question-detail">View</a>
-                    </td>
-                  </tr>
-                  <tr class="even pointer">
-                    <td class=" ">01/11/2017 12:36</td>
-                    <td class=" ">174.28.16.20</td>
-                    <td class=" ">UNITED STATES</td>
-                    <td class=" ">medical technology</td>
-                    <td class=" last">
-                      <a routerLink="/question-detail">View</a>
-                    </td>
-                  </tr>
-                  <tr class="odd pointer">
-                    <td class=" ">01/11/2017 12:36</td>
-                    <td class=" ">174.28.16.20</td>
-                    <td class=" ">UNITED STATES</td>
-                    <td class=" ">medical technology</td>
-                    <td class=" last">
-                      <a routerLink="/question-detail">View</a>
-                    </td>
-                  </tr>
-                  <tr class="even pointer">
-                    <td class=" ">01/11/2017 12:36</td>
-                    <td class=" ">174.28.16.20</td>
-                    <td class=" ">UNITED STATES</td>
-                    <td class=" ">medical technology</td>
-                    <td class=" last">
-                      <a routerLink="/question-detail">View</a>
-                    </td>
-                  </tr>
-                  <tr class="odd pointer">
-                    <td class=" ">01/11/2017 12:36</td>
-                    <td class=" ">174.28.16.20</td>
-                    <td class=" ">UNITED STATES</td>
-                    <td class=" ">medical technology</td>
-                    <td class=" last">
-                      <a routerLink="/question-detail">View</a>
-                    </td>
-                  </tr>
-                  <tr class="even pointer">
-                    <td class=" ">01/11/2017 12:36</td>
-                    <td class=" ">174.28.16.20</td>
-                    <td class=" ">UNITED STATES</td>
-                    <td class=" ">medical technology</td>
-                    <td class=" last">
-                      <a routerLink="/question-detail">View</a>
-                    </td>
-                  </tr>
-                  <tr class="odd pointer">
-                    <td class=" ">01/11/2017 12:36</td>
-                    <td class=" ">174.28.16.20</td>
-                    <td class=" ">UNITED STATES</td>
-                    <td class=" ">medical technology</td>
+                  <tr class="even pointer" *ngFor="let question of questions" >
+                    <td class=" ">{{question.date}}</td>
+                    <td class=" ">{{question.ip}}</td>
+                    <td class=" ">{{question.country}}</td>
+                    <td class=" ">{{question.text}}</td>
                     <td class=" last">
                       <a routerLink="/question-detail">View</a>
                     </td>
