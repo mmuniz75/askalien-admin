@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { IAnswerDetail } from '../../model/answer.detail';
+import { AnswerDetail } from '../../model/answer.detail';
 import { AnswerService } from '../../services/answer.service';
 
 
@@ -25,7 +26,8 @@ export class AnswerComponent implements OnInit {
         answer => this.answer = answer,
         error => this.errorMessage = error
       );
-    }  
+    }else
+      this.answer = new AnswerDetail(); 
   }  
 }
 
