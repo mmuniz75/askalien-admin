@@ -1,6 +1,7 @@
 import { Http, Response,Headers, RequestOptions,  URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { IQuestion } from '../model/question';
+import { IQuestionDetail } from '../model/question.detail';
 import { IStatistic } from '../model/statistic';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
@@ -13,8 +14,9 @@ import { environment } from '../environments/environment';
 export class QuestionService {
 
   private _questionsUrl = 'http://' + environment.SERVER_URL + '/questions';
+  private _questionUrl = 'http://' + environment.SERVER_URL + '/question/';
   private _statisticUrl = 'http://' + environment.SERVER_URL + '/statistics';
-  private _questionCount = 'http://' + environment.SERVER_URL + '/questions/count';
+  private _questionCountUrl = 'http://' + environment.SERVER_URL + '/questions/count';
 
   constructor(private _http: Http) { }
 
@@ -34,8 +36,14 @@ export class QuestionService {
   }
 
   public getCountQuestions() : Observable<Number>{
-    return this._http.get(this._questionCount)
+    return this._http.get(this._questionCountUrl)
         .map((response: Response) => <Number> response.json())
+        .catch(this.handleError);
+  }
+
+  public getQuestion(id:Number) : Observable<IQuestionDetail>{
+    return this._http.get(this._questionUrl + id)
+        .map((response: Response) => <IQuestionDetail> response.json())
         .catch(this.handleError);
   }
 

@@ -18,7 +18,7 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 
 const appRoutes: Routes = [
   { path: 'questions', component: QuestionsComponent },
-  { path: 'question-detail', component: QuestionDetailComponent },
+  { path: 'question-detail/:id', component: QuestionDetailComponent },
   { path: 'topanswers', component:TopanswersComponent},
   { path: 'visitors', component:VisitorsComponent},
   { path: 'users', component:UsersComponent},
