@@ -29,6 +29,12 @@ export class QuestionService {
         .catch(this.handleError);
   }
 
+  public getQuestionsByAnswer(answerId:Number) : Observable<IQuestion[]>{
+    return this._http.get(this._questionsUrl + "/" + answerId)
+        .map((response: Response) => <IQuestion[]> response.json())
+        .catch(this.handleError);
+  }
+
   public getStatistic() : Observable<IStatistic>{
     return this._http.get(this._statisticUrl)
         .map((response: Response) => <IStatistic> response.json())

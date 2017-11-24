@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { IQuestion } from '../../model/question';
 import { IStatistic } from '../../model/statistic';
@@ -12,21 +13,32 @@ import { QuestionService } from '../../services/question.service';
 })
 export class QuestionsComponent implements OnInit {
 
-  constructor(private _questionService : QuestionService) { }
+  constructor(private _questionService : QuestionService,
+              private route: ActivatedRoute) { }
 
   questions:IQuestion[];
   statistic:IStatistic;
-  errorMessage: string;
+  errorMessage: String;
+  answerId:Number;
 
   ngOnInit() {
-    this._questionService.getQuestions().subscribe(
+    this.answerId = +this.route.snapshot.paramMap.get('id');
+
+    if(this.answerId)
+        this._questionService.getQuestionsByAnswer(this.answerId).subscribe(
+          questions => this.questions=questions,
+          error => this.errorMessage = error
+        );
+    else {
+        this._questionService.getQuestions().subscribe(
                                         questions => this.questions=questions,
                                         error => this.errorMessage = error
                                       );
-    this._questionService.getStatistic().subscribe(
-      statistic => this.statistic = statistic,
-      error => this.errorMessage = error
-    ); 
+        this._questionService.getStatistic().subscribe(
+          statistic => this.statistic = statistic,
+          error => this.errorMessage = error
+        ); 
+    }  
   }
 
 }
