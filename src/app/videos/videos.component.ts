@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IVideo } from '../../model/video';
+import { Video } from '../../model/video';
 import { VideoService } from '../../services/video.service';
 
 
@@ -15,14 +16,21 @@ export class VideosComponent implements OnInit {
   
     videos:IVideo[];
     errorMessage: string;
+    videoRec:IVideo;
           
     ngOnInit() {
       this._videoService.getVideos().subscribe(
         videos => this.videos = videos,
         error => this.errorMessage = error
       );
+    }
 
-    
+    setVideo(video:IVideo):void{
+      this.videoRec = video;
+    }
+
+    resetVideo():void{
+      this.videoRec = new Video();
     }
 
 }
