@@ -9,109 +9,15 @@
     <div class="x_content">
       <div class="dashboard-widget-content">
         <div class="col-md-4 hidden-small">
-          <h2 class="line_30">125.7k Views from 60 countries</h2>
+          <h2 class="line_30">{{countQuestions}} Views from {{countries?.length}} countries</h2>
 
           <table class="countries_list">
             <tbody>
-              <tr>
+              <tr *ngFor="let country of countries">
                 <td>
-                  UNITED STATES</td>
-                <td class="fs15 fw700 text-right"> 39765</td>
+                  {{country.country}}</td>
+                <td class="fs15 fw700 text-right"> {{country.countQuestions}}</td>
               </tr>
-              <tr>
-                <td>
-                  CANADA</td>
-                <td class="fs15 fw700 text-right"> 5461</td>
-              </tr>
-              <tr>
-                <td>
-                  FINLAND</td>
-                <td class="fs15 fw700 text-right"> 4005</td>
-              </tr>
-              <tr>
-                <td>
-                  AUSTRALIA</td>
-                <td class="fs15 fw700 text-right"> 3952</td>
-              </tr>
-              <tr>
-                <td>
-                  UNITED KINGDOM</td>
-                <td class="fs15 fw700 text-right"> 2919</td>
-              </tr>
-              <tr>
-                <td>
-                  PHILIPPINES</td>
-                <td class="fs15 fw700 text-right"> 2569</td>
-              </tr>
-              <tr>
-                <td>GERMANY</td>
-                <td class="fs15 fw700 text-right"> 2099</td>
-              </tr>
-              <tr>
-                <td>
-                  INDIA</td>
-                <td class="fs15 fw700 text-right"> 2046</td>
-              </tr>
-              <tr>
-                <td>
-                  BRAZIL</td>
-                <td class="fs15 fw700 text-right"> 1272</td>
-              </tr>
-              <tr>
-                <td>
-                  ITALY</td>
-                <td class="fs15 fw700 text-right"> 1266
-                  </tr>    
-                  <tr>
-                    <td>
-                      RUSSIAN FEDERATION</td>
-                    <td class="fs15 fw700 text-right"> 1154</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      BULGARIA</td>
-                    <td class="fs15 fw700 text-right"> 1148</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      SWEDEN</td>
-                    <td class="fs15 fw700 text-right"> 1100</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      MEXICO</td>
-                    <td class="fs15 fw700 text-right"> 1090</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      FRANCE</td>
-                    <td class="fs15 fw700 text-right"> 947</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      NEW ZEALAND</td>
-                    <td class="fs15 fw700 text-right"> 764</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      NETHERLANDS</td>
-                    <td class="fs15 fw700 text-right"> 731</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      BELGIUM</td>
-                    <td class="fs15 fw700 text-right"> 714</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      CYPRUS</td>
-                    <td class="fs15 fw700 text-right"> 658</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      NORWAY</td>
-                    <td class="fs15 fw700 text-right"> 611</td>
-                  </tr>
             </tbody>
           </table>
         </div>

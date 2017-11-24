@@ -14,7 +14,8 @@ export class QuestionService {
 
   private _questionsUrl = 'http://' + environment.SERVER_URL + '/questions';
   private _statisticUrl = 'http://' + environment.SERVER_URL + '/statistics';
-  
+  private _questionCount = 'http://' + environment.SERVER_URL + '/questions/count';
+
   constructor(private _http: Http) { }
 
   public getQuestions() : Observable<IQuestion[]>{
@@ -29,6 +30,12 @@ export class QuestionService {
   public getStatistic() : Observable<IStatistic>{
     return this._http.get(this._statisticUrl)
         .map((response: Response) => <IStatistic> response.json())
+        .catch(this.handleError);
+  }
+
+  public getCountQuestions() : Observable<Number>{
+    return this._http.get(this._questionCount)
+        .map((response: Response) => <Number> response.json())
         .catch(this.handleError);
   }
 
