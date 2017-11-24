@@ -1,6 +1,7 @@
 import { Http, Response,Headers, RequestOptions,  URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { IAnswer } from '../model/answer';
+import { IAnswerSummary } from '../model/answer.summary';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -12,6 +13,7 @@ import { environment } from '../environments/environment';
 export class AnswerService {
 
   private _topAnswers = 'http://' + environment.SERVER_URL + '/topanswers?feedback=';
+  private _answers = 'http://' + environment.SERVER_URL + '/answers';
     
   constructor(private _http: Http) { }
 
@@ -21,6 +23,15 @@ export class AnswerService {
         .map((response: Response) => <IAnswer[]> response.json())
         .catch(this.handleError);
   }
+
+
+  public getAnswers() : Observable<IAnswerSummary[]>{
+    
+        return this._http.get(this._answers)
+            .map((response: Response) => <IAnswerSummary[]> response.json())
+            .catch(this.handleError);
+      }
+    
 
   private handleError(error: any) {
     console.error(error);
