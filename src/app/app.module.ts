@@ -25,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'users', component:UsersComponent},
   { path: 'answers', component:AnswersComponent},
   { path: 'answer', component:AnswerComponent},
+  { path: 'answer/:id', component:AnswerComponent},
   { path: 'videos', component:VideosComponent},
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/questions', pathMatch: 'full' },
