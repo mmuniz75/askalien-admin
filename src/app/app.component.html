@@ -17,13 +17,13 @@
             <div class="menu_section">
               <h3>General</h3>
               <ul class="nav side-menu">
-                <li><a href="/questions" ><i class="fa fa-question"></i> Questions </a></li>
-                <li><a href="/topanswers" ><i class="fa fa-level-up"></i> Top Answers</a></li>
-                <li><a href="/visitors"><i class="fa fa-flag-checkered"></i> Visitors</a></li>
-                <li><a href="/users" ><i class="fa fa-users"></i>Users</a></li>
-                <li><a href="/answers"><i class="fa fa-lightbulb-o"></i> Answers </a></li>
-                <li><a href="/answer"><i class="fa fa-plus"></i> Add Answer</a></li>
-                <li><a href="/videos"><i class="fa fa-video-camera"></i>Videos</a></li>
+                <li [class.current-page]="component == '/questions'" ><a href="/questions" ><i class="fa fa-question"></i> Questions </a></li>
+                <li [class.current-page]="component == '/topanswers'"><a href="/topanswers" ><i class="fa fa-level-up"></i> Top Answers</a></li>
+                <li [class.current-page]="component == '/visitors'"><a href="/visitors"><i class="fa fa-flag-checkered"></i> Visitors</a></li>
+                <li [class.current-page]="component == '/users'"><a href="/users" ><i class="fa fa-users"></i>Users</a></li>
+                <li [class.current-page]="component == '/answers'"><a href="/answers"><i class="fa fa-lightbulb-o"></i> Answers </a></li>
+                <li [class.current-page]="component == '/answer'"><a href="/answer"><i class="fa fa-plus"></i> Add Answer</a></li>
+                <li [class.current-page]="component == '/videos'"><a href="/videos"><i class="fa fa-video-camera"></i>Videos</a></li>
               </ul>
             </div>
            
