@@ -1,11 +1,7 @@
-export interface IVideo {
-    id: Number,
-    number: Number,
-    date: String,
-}
-
-export class Video implements IVideo {
+export class Video {
     id: Number
     number: Number
-    date: String
+    date: string
+    formatedDate: string
+    creationDate : Date
 }

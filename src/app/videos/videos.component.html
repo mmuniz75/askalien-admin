@@ -59,7 +59,7 @@
             <h4 class="modal-title" id="myModalLabel2" *ngIf="videoRec && videoRec.id==null">New Video</h4>
             <h4 class="modal-title" id="myModalLabel2" *ngIf="videoRec && videoRec.id!=null">Edit Video {{videoRec.id}}</h4>
           </div>
-          <form class="form-horizontal form-label-left" novalidate>
+          <form class="form-horizontal form-label-left" novalidate (ngSubmit)="saveVideo()" onsubmit="return false;">
             <div class="modal-body">
           
                   <div class="item form-group">
@@ -67,7 +67,7 @@
                       <span class="required">*</span>
                     </label>
                     <div class="col-md-4 col-sm-4 col-xs-12">
-                      <input *ngIf='videoRec' [(ngModel)]='videoRec.number' type="number" id="video" name="video" required="required" class="form-control col-md-7 col-xs-12">
+                      <input *ngIf='videoRec' [(ngModel)]='videoRec.number' [ngModelOptions]="{standalone: true}" type="number" id="video" name="video" required="required" class="form-control col-md-7 col-xs-12">
                     </div>
                   </div>
 
@@ -77,11 +77,8 @@
                     </label>
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class='input-group date' id='myDatepicker'>
-                            <input *ngIf='videoRec' [(ngModel)]='videoRec.date' id="date" class="form-control col-md-7 col-xs-12" name="date" required="required" type="text">
-                            <input *ngIf='videoRec' [(ngModel)]='videoRec.id' id="id" type="hidden">
-                            <span class="input-group-addon">
-                               <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                            <input *ngIf='videoRec' [(ngModel)]='videoRec.formatedDate' [ngModelOptions]="{standalone: true}" id="date" class="form-control col-md-7 col-xs-12" name="date" required="required" type="date">
+                            <input *ngIf='videoRec' [(ngModel)]='videoRec.id' [ngModelOptions]="{standalone: true}" id="id" type="hidden">
                         </div>
                     </div>
                   </div>
