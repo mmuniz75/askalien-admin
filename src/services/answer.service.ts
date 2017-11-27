@@ -72,4 +72,13 @@ export class AnswerService {
     this.messageService.add('AnswerService: ' + message, );
   }
 
+  public isValid(answer:AnswerDetail):boolean{
+    if (answer.question && answer.question.length > 0
+        && answer.video && 
+        answer.content && answer.content.length > 0)
+        return true;
+    else 
+        return false;    
+}
+
 }

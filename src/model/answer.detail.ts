@@ -13,12 +13,5 @@ export class AnswerDetail {
         this.video = new Video();
     }
 
-    public isValid():boolean{
-        if (this.question && this.question.length > 0
-            && this.video && 
-            this.content && this.content.length > 0)
-            return true;
-        else 
-            return false;    
-    }
+    
 }

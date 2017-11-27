@@ -148,7 +148,7 @@
                               </div>
 
                               <div #divContent onchange="content.value=this.innerHTML" *ngIf="answer" id="editor-one" class="editor-wrapper" [innerHTML]='answer.content'></div>
-                              <textarea id="content" style="visibility:hidden" required="required" name="content" class="form-control col-md-7 col-xs-12"></textarea>
+                              <textarea *ngIf="answer" id="content" style="visibility:hidden" required="required" name="content" class="form-control col-md-7 col-xs-12">{{answer.content}}</textarea>
                             
                             </div>
                           </div>
