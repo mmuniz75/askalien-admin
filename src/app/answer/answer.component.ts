@@ -3,18 +3,23 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AnswerDetail } from '../../model/answer.detail';
 import { AnswerService } from '../../services/answer.service';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-answer',
-  templateUrl: './answer.component.html'
+  templateUrl: './answer.component.html',
+  styleUrls: ['./answer.component.css']
 })
 export class AnswerComponent implements OnInit {
 
   constructor(private _answerService : AnswerService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private messageService: MessageService) { }
+
   
   answer:AnswerDetail;
-  message: string;
+  snackClass : String;
+  snackMessage : String;
   
   @ViewChildren('divContent') divContent:QueryList<ElementRef>;
             
@@ -43,11 +48,17 @@ export class AnswerComponent implements OnInit {
   private resetAnswer(result){
     if(result && result.number){
       const id = result.number;
-      this.message = "Answer ${id} created !";
+      this.showSnackBar(`Answer ${id} created !`);
       this.answer = new AnswerDetail(); 
-    }else  
-      this.message = null;
+      this.messageService.clear();
+    }
   }
+
+  showSnackBar(message:String):void{
+    this.snackMessage = message;
+    this.snackClass = "show";
+    setTimeout(()=>this.snackClass = "", 3000);
+}
 
 }
 
