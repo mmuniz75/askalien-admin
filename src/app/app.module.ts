@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
@@ -15,6 +16,11 @@ import { AnswersComponent } from './answers/answers.component';
 import { AnswerComponent } from './answer/answer.component';
 import { VideosComponent } from './videos/videos.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { MessageComponent } from './message/message.component';
+
+import { AnswerService } from '../services/answer.service';
+import { MessageService } from '../services/message.service';
+
 
 const appRoutes: Routes = [
   { path: 'questions', component: QuestionsComponent },
@@ -43,15 +49,17 @@ const appRoutes: Routes = [
     AnswersComponent,
     AnswerComponent,
     VideosComponent,
-    QuestionDetailComponent
+    QuestionDetailComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [AnswerService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
