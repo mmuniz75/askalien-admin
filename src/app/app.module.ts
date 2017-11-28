@@ -21,6 +21,7 @@ import { MessageComponent } from './message/message.component';
 import { AnswerService } from '../services/answer.service';
 import { MessageService } from '../services/message.service';
 import { VideoService } from '../services/video.service';
+import { QuestionService } from '../services/question.service';
 
 
 const appRoutes: Routes = [
@@ -60,7 +61,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AnswerService,VideoService,MessageService],
+  providers: [QuestionService,AnswerService,VideoService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
