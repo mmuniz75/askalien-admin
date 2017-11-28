@@ -7,13 +7,9 @@
             <div class="x_panel">
               <div class="x_title">
                 <h2>Answers</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li>
-                      <label>
-                        <input placeholder="ID to filter" class="flat" (ngModelChange)="filterAnswers()" [(ngModel)]="id_filter" />
-                      </label>
-                  </li>
-                </ul>
+                  <div class="col-md-2 col-sm-2 col-xs-4">
+                      <input #filterId (keyup)="getAnswer(filterId.value)" placeholder="filter by ID" type="number" class="form-control col-md-7 col-xs-12">
+                  </div>
                 <div class="clearfix"></div>
               </div>
               <app-message></app-message>

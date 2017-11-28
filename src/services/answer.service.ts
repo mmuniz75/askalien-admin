@@ -18,6 +18,7 @@ export class AnswerService extends Service{
   private topAnswersUrl = `http://${environment.SERVER_URL}/topanswers`;
   private answersUrl = `http://${environment.SERVER_URL}/answers`;
   private answerUrl = `http://${environment.SERVER_URL}/answer`;
+  private answerSummaryUrl = `http://${environment.SERVER_URL}/summary-answer`;
    
   
   public getTopAnswers(feedback:Boolean) : Observable<IAnswer[]>{
@@ -42,6 +43,14 @@ export class AnswerService extends Service{
     return this.http.get<AnswerDetail>(url)
     .pipe(
       catchError(this.handleError<AnswerDetail>(`getAnswer id=${id}`))
+    );
+  }
+
+  public getAnswerSummary(id:number) : Observable<IAnswerSummary>{
+    const url = `${this.answerSummaryUrl}/${id}`;
+    return this.http.get<IAnswerSummary>(url)
+    .pipe(
+      catchError(this.handleError<IAnswerSummary>(`getAnswerSummary id=${id}`))
     );
   }
 
