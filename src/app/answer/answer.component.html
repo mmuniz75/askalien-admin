@@ -156,7 +156,10 @@
                           <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                               <button *ngIf='answer?.number' type="button" (click)="backList()" class="btn btn-primary">Cancel</button>
-                              <button id="save" type="submit" class="btn btn-success" (click)="saveAnswer(answer)">Save</button>
+                              <button id="save" type="submit" class="btn btn-success" (click)="saveAnswer(answer)">
+                                <span *ngIf='answer?.number'>Save Changes</span>
+                                <span *ngIf='!answer?.number'>Add Answer</span>
+                              </button>
                             </div>
                           </div>
                         </form>

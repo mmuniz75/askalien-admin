@@ -1,39 +1,45 @@
-import { Http, Response,Headers, RequestOptions,  URLSearchParams } from '@angular/http';
+
 import { Injectable } from '@angular/core';
+
 import { Video } from '../model/video';
+
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+
+import { catchError, map, tap } from 'rxjs/operators';
+import { Service } from './service.service';
+import { HTTP_OPTIONS } from './consts';
+
 
 import { environment } from '../environments/environment';
 
 @Injectable()
-export class VideoService {
+export class VideoService extends Service{
 
-  private _videosUrl = 'http://' + environment.SERVER_URL + '/videos';
-  private _videoUrl = 'http://' + environment.SERVER_URL + '/video';
+  private videosUrl = `http://${environment.SERVER_URL}/videos`;
+  private videoUrl = `http://${environment.SERVER_URL}/video`;
+   
     
-  constructor(private _http: Http) { }
-  
   public getVideos() : Observable<Video[]>{
-        return this._http.get(this._videosUrl)
-            .map((response: Response) => <Video[]> response.json())
-            .catch(this.handleError);
-      }
-    
-  public saveVideo(video:Video){
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers ,method: "post"});
-        
-    return this._http.post(this._videoUrl, JSON.stringify(video), options)
-                  .catch(this.handleError);
-
+        return this.http.get<Video[]>(this.videosUrl)
+                                      .pipe(
+                                        catchError(this.handleError('VideoService','getVideos', []))
+                                      );
   }
 
-  private handleError(error: any) {
-    console.error(error);
-    return Observable.throw(error.message || 'Server error');
- }
+    
+  public saveVideo(video:Video): Observable<Video>{
+      return this.http.post<Video>(this.videoUrl, video, HTTP_OPTIONS)
+                            .pipe(
+                              catchError(this.handleError<Video>('VideoService','saveVideo'))
+                          );
+  }
+
+  public isValid(video:Video):boolean{
+    if (video.formatedCreationDate && video.formatedCreationDate.length > 0
+        && video.number && video.number > 0)
+        return true;
+    else 
+        return false;    
+}
 
 }

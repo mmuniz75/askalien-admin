@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
  
 import { Observable } from 'rxjs/Observable';
-import { catchError, map, tap } from 'rxjs/operators';
 
+import { catchError, map, tap } from 'rxjs/operators';
 import { Service } from './service.service';
- 
 import { HTTP_OPTIONS } from './consts';
 
 import { IAnswer } from '../model/answer';
@@ -47,8 +46,8 @@ export class AnswerService extends Service{
   }
 
   public addAnswer (answer: AnswerDetail): Observable<AnswerDetail> {
-    return this.http.post<AnswerDetail>(this.answerUrl, answer,HTTP_OPTIONS).pipe(
-      catchError(this.handleError<AnswerDetail>('addAnswer'))
+    return this.http.post<AnswerDetail>(this.answerUrl, answer,HTTP_OPTIONS)
+      .pipe(catchError(this.handleError<AnswerDetail>('AnswerService','addAnswer'))
     );
   }
   public isValid(answer:AnswerDetail):boolean{

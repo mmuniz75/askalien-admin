@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChildren,ElementRef,QueryList } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -23,7 +23,7 @@ export class AnswerComponent implements OnInit {
   snackClass : String;
   snackMessage : String;
   
-  @ViewChildren('divContent') divContent:QueryList<ElementRef>;
+  @ViewChild('divContent') divContent:ElementRef;
             
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -37,7 +37,7 @@ export class AnswerComponent implements OnInit {
   
 
   saveAnswer(answer:AnswerDetail){
-    const content = this.divContent.toArray()[0].nativeElement.innerHTML;
+    const content = this.divContent.nativeElement.innerHTML;
     if(content)
       answer.content = content;
 

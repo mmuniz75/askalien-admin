@@ -8,12 +8,12 @@
               <div class="x_title">
                 <h2>Videos</h2>
                 <ul class="nav navbar-right panel_toolbox">
-                    <li><a (click)="resetVideo()"data-toggle="modal" data-target=".video-dialog"><i class="fa fa-plus"></i></a>
+                    <li><a (click)="addVideo()" data-toggle="modal" data-target=".video-dialog"><i class="fa fa-plus"></i></a>
                     </li>
                   </ul>
                 <div class="clearfix"></div>
               </div>
-    
+              <app-message></app-message>
               <div class="x_content">
     
                 <div class="table-responsive">
@@ -31,9 +31,9 @@
                     <tbody>
                       <tr class="even pointer" *ngFor="let video of videos">
                         <td class=" ">{{video.number}}</td>
-                        <td class=" ">{{video.date}}</td>
+                        <td class=" ">{{video.formatedCreationDate | date:"MM/dd/yyyy"}}</td>
                         <td class=" last">
-                          <a (click)="setVideo(video)" data-toggle="modal" data-target=".video-dialog">Edit</a>
+                          <a (click)="setVideo(video)" data-toggle="modal" data-target=".video-dialog" href="#">Edit</a>
                         </td>
                       </tr>
     
@@ -49,17 +49,17 @@
       </div>
     </div>
  
-  <div class="modal fade video-dialog" tabindex="-1" role="dialog" aria-hidden="true">
+  <div [hidden]="hideModal" class="modal fade video-dialog" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel2" *ngIf="videoRec && videoRec.id==null">New Video</h4>
-            <h4 class="modal-title" id="myModalLabel2" *ngIf="videoRec && videoRec.id!=null">Edit Video {{videoRec.id}}</h4>
+            <h4 class="modal-title" id="myModalLabel2" *ngIf="video && video.id==null">New Video</h4>
+            <h4 class="modal-title" id="myModalLabel2" *ngIf="video && video.id!=null">Edit Video {{video.id}}</h4>
           </div>
-          <form class="form-horizontal form-label-left" novalidate (ngSubmit)="saveVideo()" onsubmit="return false;">
+          <form class="form-horizontal form-label-left" novalidate >
             <div class="modal-body">
           
                   <div class="item form-group">
@@ -67,7 +67,7 @@
                       <span class="required">*</span>
                     </label>
                     <div class="col-md-4 col-sm-4 col-xs-12">
-                      <input *ngIf='videoRec' [(ngModel)]='videoRec.number' [ngModelOptions]="{standalone: true}" type="number" id="video" name="video" required="required" class="form-control col-md-7 col-xs-12">
+                      <input *ngIf='video' [(ngModel)]='video.number' [ngModelOptions]="{standalone: true}" type="number" id="video" name="video" required="required" class="form-control col-md-7 col-xs-12">
                     </div>
                   </div>
 
@@ -77,16 +77,20 @@
                     </label>
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class='input-group date' id='myDatepicker'>
-                            <input *ngIf='videoRec' [(ngModel)]='videoRec.formatedDate' [ngModelOptions]="{standalone: true}" id="date" class="form-control col-md-7 col-xs-12" name="date" required="required" type="date">
-                            <input *ngIf='videoRec' [(ngModel)]='videoRec.id' [ngModelOptions]="{standalone: true}" id="id" type="hidden">
+                            <input *ngIf='video' [(ngModel)]='video.formatedCreationDate' [ngModelOptions]="{standalone: true}" id="date" class="form-control col-md-7 col-xs-12" name="date" required="required" type="date">
+                            <input *ngIf='video' [(ngModel)]='video.id' [ngModelOptions]="{standalone: true}" id="id" type="hidden">
                         </div>
                     </div>
                   </div>
             </div>
             
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" #closeModal>Cancel</button>
+              <button (click)="saveVideo()" type="submit" class="btn btn-primary">
+                  <span *ngIf="video && video.id!=null">Save Changes</span>
+                  <span *ngIf="video && video.id==null">Add Video</span>
+              </button>
+
             </div>
           </form>  
         </div>
