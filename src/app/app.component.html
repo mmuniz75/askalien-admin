@@ -16,12 +16,12 @@
               <h3>General</h3>
               <ul class="nav side-menu">
                 <li [class.current-page]="url == '/questions'" ><a  (click)="setUrl('/questions')" href="/questions" ><i class="fa fa-question"></i> Questions </a></li>
-                <li [class.current-page]="url == '/topanswers'"><a (click)="setUrl('/topanswers')" routerLink="/topanswers" ><i class="fa fa-level-up"></i> Top Answers</a></li>
-                <li [class.current-page]="url == '/visitors'"><a (click)="setUrl('/visitors')" routerLink="/visitors"><i class="fa fa-flag-checkered"></i> Visitors</a></li>
                 <li [class.current-page]="url == '/users'"><a  (click)="setUrl('/users')" routerLink="/users" ><i class="fa fa-users"></i>Users</a></li>
+                <li [class.current-page]="url == '/visitors'"><a (click)="setUrl('/visitors')" routerLink="/visitors"><i class="fa fa-flag-checkered"></i> Visitors</a></li>
+                <li [class.current-page]="url == '/topanswers'"><a (click)="setUrl('/topanswers')" routerLink="/topanswers" ><i class="fa fa-level-up"></i> Top Answers</a></li>
                 <li [class.current-page]="url == '/answers'"><a  (click)="setUrl('/answers')" routerLink="/answers"><i class="fa fa-lightbulb-o"></i> Answers </a></li>
-                <li [class.current-page]="url == '/answer'"><a  (click)="setUrl('/answer')" href="/answer"><i class="fa fa-plus"></i> Add Answer</a></li>
                 <li [class.current-page]="url == '/videos'"><a  (click)="setUrl('/videos')" href="/videos"><i class="fa fa-video-camera"></i>Videos</a></li>
+                <li [class.current-page]="url == '/answer'"><a  (click)="setUrl('/answer')" href="/answer"><i class="fa fa-plus"></i> Add Answer</a></li>
               </ul>
             </div>
            
