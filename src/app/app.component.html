@@ -5,9 +5,7 @@
           <div class="navbar nav_title" style="border: 0;">
             <a href="index.html" class="site_title"><i class="fa fa-space-shuttle"></i> <span>Ask Alien Console</span></a>
           </div>
-
           <div class="clearfix"></div>
-
           <br />
 
           <!-- sidebar menu 
@@ -17,13 +15,13 @@
             <div class="menu_section">
               <h3>General</h3>
               <ul class="nav side-menu">
-                <li [class.current-page]="component == '/questions'" ><a href="/questions" ><i class="fa fa-question"></i> Questions </a></li>
-                <li [class.current-page]="component == '/topanswers'"><a href="/topanswers" ><i class="fa fa-level-up"></i> Top Answers</a></li>
-                <li [class.current-page]="component == '/visitors'"><a href="/visitors"><i class="fa fa-flag-checkered"></i> Visitors</a></li>
-                <li [class.current-page]="component == '/users'"><a href="/users" ><i class="fa fa-users"></i>Users</a></li>
-                <li [class.current-page]="component == '/answers'"><a href="/answers"><i class="fa fa-lightbulb-o"></i> Answers </a></li>
-                <li [class.current-page]="component == '/answer'"><a href="/answer"><i class="fa fa-plus"></i> Add Answer</a></li>
-                <li [class.current-page]="component == '/videos'"><a href="/videos"><i class="fa fa-video-camera"></i>Videos</a></li>
+                <li [class.current-page]="url == '/questions'" ><a  (click)="setUrl('/questions')" href="/questions" ><i class="fa fa-question"></i> Questions </a></li>
+                <li [class.current-page]="url == '/topanswers'"><a (click)="setUrl('/topanswers')" routerLink="/topanswers" ><i class="fa fa-level-up"></i> Top Answers</a></li>
+                <li [class.current-page]="url == '/visitors'"><a (click)="setUrl('/visitors')" routerLink="/visitors"><i class="fa fa-flag-checkered"></i> Visitors</a></li>
+                <li [class.current-page]="url == '/users'"><a  (click)="setUrl('/users')" routerLink="/users" ><i class="fa fa-users"></i>Users</a></li>
+                <li [class.current-page]="url == '/answers'"><a  (click)="setUrl('/answers')" routerLink="/answers"><i class="fa fa-lightbulb-o"></i> Answers </a></li>
+                <li [class.current-page]="url == '/answer'"><a  (click)="setUrl('/answer')" href="/answer"><i class="fa fa-plus"></i> Add Answer</a></li>
+                <li [class.current-page]="url == '/videos'"><a  (click)="setUrl('/videos')" routerLink="/videos"><i class="fa fa-video-camera"></i>Videos</a></li>
               </ul>
             </div>
            
@@ -62,7 +60,7 @@
 
       <!-- page content -->
       
-          <router-outlet></router-outlet>
+          <router-outlet #outlet></router-outlet>
       
       <!-- /page content -->
 

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component,ViewChild,ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +6,15 @@ import { Location } from '@angular/common';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private location: Location) { }
-   
-  component:String;
+    
+  url : string;
   
   ngOnInit() {
-    this.component=location.pathname;
+    this.url = location.pathname;
   }
 
+  setUrl(value:string){
+    this.url = value;
+  }
   
 }
