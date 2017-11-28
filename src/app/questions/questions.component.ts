@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { IQuestion } from '../../model/question';
 import { IStatistic } from '../../model/statistic';
@@ -13,7 +14,9 @@ import { QuestionFilter } from '../../services/question.filter';
 export class QuestionsComponent implements OnInit {
 
   constructor(private _questionService : QuestionService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private location: Location ) { }
+
 
   questions:IQuestion[];
   statistic:IStatistic;
@@ -42,24 +45,37 @@ export class QuestionsComponent implements OnInit {
   }
 
   private reloadQuestions(){
-    document.body.style.cursor = 'wait';
-    this.setDates();
+    if( (!this.filter.ipFilter || this.filter.ipFilter == "") && (!this.filter.question || this.filter.question =="") )
+      this.filter.startDates();
+
     this._questionService.getQuestionsByFilter(this.filter).subscribe(
-      questions => this.setQuestions(questions)
+      questions => this.questions=questions
     );
   }
 
-  private setQuestions(questions:IQuestion[]){
-    this.questions=questions;
-    document.body.style.cursor = 'auto';
-  }
-
-  private setDates(){
+  private filterByDates(){
     const date = this.filterDate.nativeElement.innerHTML;
     const dates = date.split(" - ");
     this.filter.startDate = new Date(dates[0]);
     this.filter.endDate = new Date(dates[1]);
+    this.filter.ipFilter = "";
+    this.filter.question = "";
+    this.filter.justFeedback = null;
+    this._questionService.getQuestionsByFilter(this.filter).subscribe(
+      questions => this.questions=questions
+    );
   }
+
+  private filterByText(){
+     this.filter.startDate = null;
+     this.filter.endDate = null;
+     this.filter.justFeedback = null;
+     this.reloadQuestions();
+  }
+
+  backList(){
+    this.location.back();
+  }  
 
 
 }

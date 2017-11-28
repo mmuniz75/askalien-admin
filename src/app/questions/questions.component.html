@@ -69,22 +69,18 @@
               </div>
 
               <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                <input type="text" (change)="reloadQuestions()" [(ngModel)]="filter.ipFilter" placeholder="Ip" class="form-control">
+                <input type="text" (change)="filterByText()" [(ngModel)]="filter.ipFilter" placeholder="Ip" class="form-control">
               </div>
 
 
               <div class="col-md-3 col-sm-12 col-xs-12 form-group">
-                <input type="text" (change)="reloadQuestions()" [(ngModel)]="filter.question" placeholder="Question" class="form-control">
+                <input type="text" (change)="filterByText()" [(ngModel)]="filter.question" placeholder="Question" class="form-control">
                 <br>
-                <div class="col-md-1 col-sm-1 col-xs-1 form-group">
-                    <button type="button" class="btn btn-success" (click)="reloadQuestions()">Filter</button>
-                </div>  
-
-              </div>
-
-              
-
-            </div>
+             </div>
+             <div class="col-md-1 col-sm-1 col-xs-1 form-group">
+                <button type="button" class="btn btn-success" (click)="filterByDates()">Filter Dates</button>
+            </div>  
+          </div>
 
           </div>
         </div>
@@ -141,13 +137,20 @@
               </table>
             </div>
 
+             
 
           </div>
+          
         </div>
+        
       </div>
-
+     
     </div>
+    
   </div>
 
+</div>
+<div class="col-md-6 col-md-offset-3">
+    <button *ngIf='answerId' type="button" (click)="backList()" class="btn btn-primary">Back</button>
 </div>
 

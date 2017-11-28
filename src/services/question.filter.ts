@@ -3,9 +3,13 @@ export class QuestionFilter {
 	startDate:Date;
 	endDate:Date;
 	question:string;
-    ipFilter:String;
+    ipFilter:string;
     
     constructor(){
+        this.startDates();
+    }
+
+    public startDates(){
         this.startDate = new Date();
         this.startDate.setDate(1);
         this.startDate.setHours(0,0,0,0);

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { IQuestionDetail } from '../../model/question.detail';
 import { QuestionService } from '../../services/question.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-question-detail',
@@ -14,7 +15,9 @@ export class QuestionDetailComponent implements OnInit {
   question:IQuestionDetail;
   errorMessage: string;
 
-  constructor(private route: ActivatedRoute,private _questionService : QuestionService) { }
+  constructor(private route: ActivatedRoute,
+              private _questionService : QuestionService,
+              private location: Location) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -23,7 +26,10 @@ export class QuestionDetailComponent implements OnInit {
       question => this.question = question,
       error => this.errorMessage = error
     );
-
   }
+  
+  backList(){
+    this.location.back();
+  }  
 
 }
