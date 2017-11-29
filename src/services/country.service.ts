@@ -1,30 +1,34 @@
-import { Http, Response,Headers, RequestOptions,  URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
+
 import { ICountry } from '../model/Country';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+
+import { catchError, map, tap } from 'rxjs/operators';
+import { Service } from './service.service';
+import { HTTP_OPTIONS } from './consts';
 
 import { environment } from '../environments/environment';
 
 @Injectable()
-export class CountryService {
+export class CountryService extends Service{
 
-  private _countries = 'http://' + environment.SERVER_URL + '/countries';
-    
-  constructor(private _http: Http) { }
+  private countriesUrl = `http://${environment.SERVER_URL}/countries`;
+  private countriesCodeUrl = `http://${environment.SERVER_URL}/countriesCode`;
 
   public getCountries() : Observable<ICountry[]>{
 
-    return this._http.get(this._countries)
-        .map((response: Response) => <ICountry[]> response.json())
-        .catch(this.handleError);
+    return this.http.get<ICountry[]>(this.countriesUrl)
+                        .pipe(
+                          catchError(this.handleError('CountryService','getCountries', []))
+                        );
   }
 
-  private handleError(error: any) {
-    console.error(error);
-    return Observable.throw(error.message || 'Server error');
- }
+  public getCountriesCode() : Observable<any[]>{
+    
+    return this.http.get<any[]>(this.countriesCodeUrl)
+                        .pipe(
+                          catchError(this.handleError('CountryService','getCountries', []))
+                        );
+  }
 
 }
