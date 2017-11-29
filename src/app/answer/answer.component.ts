@@ -6,6 +6,8 @@ import { AnswerDetail } from '../../model/answer.detail';
 import { AnswerService } from '../../services/answer.service';
 import { MessageService } from '../../services/message.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
@@ -33,6 +35,7 @@ export class AnswerComponent implements OnInit {
       );
     }else
     this.answer = new AnswerDetail(); 
+    $.getScript("../../assets/js/custom.min.js");
   } 
   
 

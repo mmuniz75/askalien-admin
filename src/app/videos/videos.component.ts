@@ -3,6 +3,7 @@ import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { Video } from '../../model/video';
 import { VideoService } from '../../services/video.service';
 
+declare var $: any;
 
 @Component({
   selector: 'app-videos',
@@ -20,6 +21,7 @@ export class VideosComponent implements OnInit {
       this.videoService.getVideos().subscribe(
         videos => this.videos = videos
       );
+      $.getScript("../../assets/js/custom.min.js");
     }
 
     setVideo(video:Video):void{
