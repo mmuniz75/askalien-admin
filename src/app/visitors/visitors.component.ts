@@ -7,8 +7,7 @@ declare var $: any;
 
 @Component({
   selector: 'app-visitors',
-  templateUrl: './visitors.component.html',
-  providers: [CountryService,QuestionService]
+  templateUrl: './visitors.component.html'
 })
 export class VisitorsComponent implements OnInit {
 

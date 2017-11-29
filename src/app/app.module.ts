@@ -22,6 +22,7 @@ import { AnswerService } from '../services/answer.service';
 import { MessageService } from '../services/message.service';
 import { VideoService } from '../services/video.service';
 import { QuestionService } from '../services/question.service';
+import { CountryService } from '../services/country.service';
 
 
 const appRoutes: Routes = [
@@ -61,7 +62,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [QuestionService,AnswerService,VideoService,MessageService],
+  providers: [QuestionService,AnswerService,VideoService,MessageService,CountryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
