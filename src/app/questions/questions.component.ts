@@ -7,6 +7,8 @@ import { IStatistic } from '../../model/statistic';
 import { QuestionService } from '../../services/question.service';
 import { QuestionFilter } from '../../services/question.filter';
 
+declare var $: any;
+
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html'
@@ -27,6 +29,7 @@ export class QuestionsComponent implements OnInit {
 
 
   ngOnInit() {
+    $.getScript("../../assets/js/custom.min.js");
     this.filter = new QuestionFilter();
     this.answerId = +this.route.snapshot.paramMap.get('id');
 
