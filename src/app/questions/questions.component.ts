@@ -25,11 +25,14 @@ export class QuestionsComponent implements OnInit {
   errorMessage: String;
   answerId:Number;
   filter:QuestionFilter;
+  feedback : boolean = false;
+
   @ViewChild('filterDate') filterDate:ElementRef;
 
 
   ngOnInit() {
     $.getScript("../../assets/js/custom.min.js");
+    $.getScript("../../assets/js/icheck.min.js");
     this.filter = new QuestionFilter();
     this.answerId = +this.route.snapshot.paramMap.get('id');
 
@@ -45,6 +48,26 @@ export class QuestionsComponent implements OnInit {
           statistic => this.statistic = statistic
         ); 
     }  
+  }
+
+  ngAfterViewChecked(){
+    let self = this;
+    $('input').on('ifChecked', function(event){
+      if(!self.feedback){
+        self.feedback = true;
+        self.filter.justFeedback=true;
+        self.reloadQuestions();
+      }
+    });
+
+    $('input').on('ifUnchecked', function(event){
+      if(self.feedback){
+        self.feedback = false;
+        self.filter.justFeedback=false;
+        self.reloadQuestions();
+      }
+    });
+    
   }
 
   private reloadQuestions(){
