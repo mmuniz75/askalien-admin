@@ -46,9 +46,16 @@ export class AnswerComponent implements OnInit {
 
     let id = answer.number;  
     if(this.answerService.isValid(answer)) 
-      this.answerService.addAnswer(answer).subscribe(
-        result => this.resetAnswer(result,id)
-      );
+
+      if(!id) {
+        this.answerService.addAnswer(answer).subscribe(
+          result => this.resetAnswer(result,id)
+        );
+      }else{
+        this.answerService.updateAnswer(answer).subscribe(
+          result => this.resetAnswer(result,id)
+        );
+      }  
   }
 
   private resetAnswer(result,id:Number){
@@ -60,7 +67,6 @@ export class AnswerComponent implements OnInit {
         this.showSnackBar(`Answer ${id} created !`);
         this.answer = new AnswerDetail(); 
       }else{
-        this.showSnackBar(`Answer ${id} updated !`);
         this.location.back();
       }  
     }

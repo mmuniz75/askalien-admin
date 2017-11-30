@@ -24,7 +24,7 @@ export class AnswerService extends Service{
   public getTopAnswers(feedback:Boolean) : Observable<IAnswer[]>{
     const url = `${this.topAnswersUrl}?feedback=${feedback}`;
     
-    return this.http.get<IAnswer[]>(url)
+    return this.http.get<IAnswer[]>(url,HTTP_OPTIONS)
     .pipe(
       catchError(this.handleError('AnswerService','getTopAnswers', []))
     );
@@ -32,7 +32,7 @@ export class AnswerService extends Service{
   }
 
   public getAnswers() : Observable<IAnswerSummary[]>{
-    return this.http.get<IAnswerSummary[]>(this.answersUrl)
+    return this.http.get<IAnswerSummary[]>(this.answersUrl,HTTP_OPTIONS)
       .pipe(
         catchError(this.handleError('AnswerService','getAnswers', []))
       );
@@ -40,7 +40,7 @@ export class AnswerService extends Service{
  
   public getAnswer(id:number) : Observable<AnswerDetail>{
     const url = `${this.answerUrl}/${id}`;
-    return this.http.get<AnswerDetail>(url)
+    return this.http.get<AnswerDetail>(url,HTTP_OPTIONS)
     .pipe(
       catchError(this.handleError<AnswerDetail>(`getAnswer id=${id}`))
     );
@@ -48,7 +48,7 @@ export class AnswerService extends Service{
 
   public getAnswerSummary(id:number) : Observable<IAnswerSummary>{
     const url = `${this.answerSummaryUrl}/${id}`;
-    return this.http.get<IAnswerSummary>(url)
+    return this.http.get<IAnswerSummary>(url,HTTP_OPTIONS)
     .pipe(
       catchError(this.handleError<IAnswerSummary>(`getAnswerSummary id=${id}`))
     );
@@ -59,6 +59,13 @@ export class AnswerService extends Service{
       .pipe(catchError(this.handleError<AnswerDetail>('AnswerService','addAnswer'))
     );
   }
+
+  public updateAnswer (answer: AnswerDetail): Observable<AnswerDetail> {
+    return this.http.put<AnswerDetail>(this.answerUrl, answer,HTTP_OPTIONS)
+      .pipe(catchError(this.handleError<AnswerDetail>('AnswerService','updateAnswer'))
+    );
+  }
+
   public isValid(answer:AnswerDetail):boolean{
     if (answer.question && answer.question.length > 0
         && answer.video && 

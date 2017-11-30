@@ -20,7 +20,7 @@ export class VideoService extends Service{
    
     
   public getVideos() : Observable<Video[]>{
-        return this.http.get<Video[]>(this.videosUrl)
+        return this.http.get<Video[]>(this.videosUrl,HTTP_OPTIONS)
                                       .pipe(
                                         catchError(this.handleError('VideoService','getVideos', []))
                                       );

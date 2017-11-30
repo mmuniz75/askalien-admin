@@ -17,7 +17,7 @@ export class UserService extends Service{
   
   public getUsers(year:number) : Observable<IUser[]>{
 
-    return this.http.get<IUser[]>(`${this.usersUrl}/${year}`)
+    return this.http.get<IUser[]>(`${this.usersUrl}/${year}`,HTTP_OPTIONS)
                         .pipe(
                           catchError(this.handleError('UserService','getUsers', []))
                         );

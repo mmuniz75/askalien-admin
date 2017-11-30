@@ -17,7 +17,7 @@ export class CountryService extends Service{
 
   public getCountries() : Observable<ICountry[]>{
 
-    return this.http.get<ICountry[]>(this.countriesUrl)
+    return this.http.get<ICountry[]>(this.countriesUrl,HTTP_OPTIONS)
                         .pipe(
                           catchError(this.handleError('CountryService','getCountries', []))
                         );
@@ -25,7 +25,7 @@ export class CountryService extends Service{
 
   public getCountriesCode() : Observable<any[]>{
     
-    return this.http.get<any[]>(this.countriesCodeUrl)
+    return this.http.get<any[]>(this.countriesCodeUrl,HTTP_OPTIONS)
                         .pipe(
                           catchError(this.handleError('CountryService','getCountries', []))
                         );

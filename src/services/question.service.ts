@@ -12,23 +12,24 @@ import { environment } from '../environments/environment';
 
 import { QuestionFilter } from './question.filter';
 
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable()
 export class QuestionService extends Service {
 
   private questionsUrl = `http://${environment.SERVER_URL}/questions`;
-  private questionUrl = `http://${environment.SERVER_URL}/question/`;
+  private questionUrl = `http://${environment.SERVER_URL}/question`;
   private statisticUrl = `http://${environment.SERVER_URL}/statistics`;
   private questionCountUrl = `http://${environment.SERVER_URL}/questions/count`;
 
   public getQuestions() : Observable<IQuestion[]>{
-    //let headers = new Headers({ 'Authorization': 'Basic ' +  btoa('admin:456') });   
-    //let options = new RequestOptions({ headers: headers ,method: "get"});
-
-    return this.http.get<IQuestion[]>(this.questionsUrl)
+    
+    return this.http.get<IQuestion[]>(this.questionsUrl,HTTP_OPTIONS)
                                       .pipe(
                                         catchError(this.handleError('QuestionService','getQuestions', []))
                                       );
+
   }
 
 
@@ -41,28 +42,28 @@ export class QuestionService extends Service {
   }
 
   public getQuestionsByAnswer(answerId:Number) : Observable<IQuestion[]>{
-    return this.http.get<IQuestion[]>(`${this.questionsUrl}/${answerId}`)
+    return this.http.get<IQuestion[]>(`${this.questionsUrl}/${answerId}`,HTTP_OPTIONS)
                                       .pipe(
                                         catchError(this.handleError('QuestionService','getQuestionsByAnswer', []))
                                       );
   }
 
   public getStatistic() : Observable<IStatistic>{
-    return this.http.get<IStatistic>(this.statisticUrl)
+    return this.http.get<IStatistic>(this.statisticUrl,HTTP_OPTIONS)
                                     .pipe(
                                       catchError(this.handleError<IStatistic>('QuestionService','getStatistic()'))
                                     );
   }
 
   public getCountQuestions() : Observable<Number>{
-    return this.http.get<Number>(this.questionCountUrl)
+    return this.http.get<Number>(this.questionCountUrl,HTTP_OPTIONS)
                                 .pipe(
                                   catchError(this.handleError<Number>('QuestionService','getStatistic()'))
                                 );
   }
 
   public getQuestion(id:Number) : Observable<IQuestionDetail>{
-    return this.http.get<IQuestionDetail>(this.questionUrl + id)
+    return this.http.get<IQuestionDetail>(`${this.questionUrl}/${id}`,HTTP_OPTIONS)
                                           .pipe(
                                             catchError(this.handleError<IQuestionDetail>('QuestionService','getStatistic()'))
                                           );
