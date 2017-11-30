@@ -8,6 +8,7 @@ import { QuestionService } from '../../services/question.service';
 import { QuestionFilter } from '../../services/question.filter';
 
 declare var $: any;
+declare var moment: any;
 
 @Component({
   selector: 'app-questions',
@@ -65,8 +66,10 @@ export class QuestionsComponent implements OnInit {
   }
 
   private reloadQuestions(){
-    if( (!this.filter.ipFilter || this.filter.ipFilter == "") && (!this.filter.question || this.filter.question =="") )
+    if( (!this.filter.ipFilter || this.filter.ipFilter == "") && (!this.filter.question || this.filter.question =="") ){
       this.filter.startDates();
+      $('#reportrange_right span').html(moment().startOf('month').format('MMMM D, YYYY') + ' - ' + moment().endOf('month').format('MMMM D, YYYY'));
+    }  
 
     this._questionService.getQuestionsByFilter(this.filter).subscribe(
       questions => this.questions=questions
@@ -85,6 +88,7 @@ export class QuestionsComponent implements OnInit {
   }
 
   private filterByText(){
+    $('#reportrange_right span').html("");
      this.filter.startDate = null;
      this.filter.endDate = null;
      this.filter.justFeedback = null;
