@@ -25,11 +25,7 @@ export class QuestionsComponent implements OnInit {
   errorMessage: String;
   answerId:Number;
   filter:QuestionFilter;
-  feedback : boolean = false;
-
-  @ViewChild('filterDate') filterDate:ElementRef;
-
-
+  
   ngOnInit() {
     $.getScript("../../assets/js/custom.min.js");
     $.getScript("../../assets/js/icheck.min.js");
@@ -50,24 +46,22 @@ export class QuestionsComponent implements OnInit {
     }  
   }
 
-  ngAfterViewChecked(){
+  ngAfterViewInit(){
     let self = this;
     $('input').on('ifChecked', function(event){
-      if(!self.feedback){
-        self.feedback = true;
-        self.filter.justFeedback=true;
-        self.reloadQuestions();
-      }
+      self.filter.justFeedback=true;
+      self.reloadQuestions();
     });
 
     $('input').on('ifUnchecked', function(event){
-      if(self.feedback){
-        self.feedback = false;
         self.filter.justFeedback=false;
         self.reloadQuestions();
-      }
     });
     
+    $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
+      self.filterByDates(picker.startDate,picker.endDate);
+    });
+      
   }
 
   private reloadQuestions(){
@@ -79,11 +73,9 @@ export class QuestionsComponent implements OnInit {
     );
   }
 
-  private filterByDates(){
-    const date = this.filterDate.nativeElement.innerHTML;
-    const dates = date.split(" - ");
-    this.filter.startDate = new Date(dates[0]);
-    this.filter.endDate = new Date(dates[1]);
+  private filterByDates(startDate:Date,endDate:Date){
+    this.filter.startDate = startDate;
+    this.filter.endDate = endDate;
     this.filter.ipFilter = "";
     this.filter.question = "";
     this.filter.justFeedback = null;

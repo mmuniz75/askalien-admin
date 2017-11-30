@@ -15,7 +15,6 @@ export class TopanswersComponent implements OnInit {
   constructor(private answerService : AnswerService) { }
   
     answers:IAnswer[];
-    feedback : boolean = false;
       
     ngOnInit() {
       $.getScript("../../assets/js/icheck.min.js");
@@ -23,20 +22,14 @@ export class TopanswersComponent implements OnInit {
       this.loadTopAnswers(false);
     }
     
-    ngAfterViewChecked(){
+    ngAfterViewInit(){
       let self = this;
       $('input').on('ifChecked', function(event){
-        if(!self.feedback){
-          self.feedback = true;
           self.loadTopAnswers(true);
-        }
       });
 
       $('input').on('ifUnchecked', function(event){
-        if(self.feedback){
-          self.feedback = false;
           self.loadTopAnswers(false);
-        }
       });
       
     }
