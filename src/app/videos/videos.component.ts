@@ -22,6 +22,7 @@ export class VideosComponent implements OnInit {
         videos => this.videos = videos
       );
       $.getScript("../../assets/js/custom.min.js");
+      $.getScript("../../assets/js/validator.js");
     }
 
     setVideo(video:Video):void{

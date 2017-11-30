@@ -36,6 +36,10 @@ export class AnswerComponent implements OnInit {
     }else
     this.answer = new AnswerDetail(); 
     $.getScript("../../assets/js/custom.min.js");
+    $.getScript("../../assets/js/bootstrap-wysiwyg.min.js");
+    $.getScript("../../assets/js/jquery.hotkeys.js");
+    $.getScript("../../assets/js/prettify.js");
+    $.getScript("../../assets/js/validator.js");
   } 
   
 

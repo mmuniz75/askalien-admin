@@ -30,6 +30,7 @@ export class QuestionsComponent implements OnInit {
   ngOnInit() {
     $.getScript("../../assets/js/custom.min.js");
     $.getScript("../../assets/js/icheck.min.js");
+
     this.filter = new QuestionFilter();
     this.answerId = +this.route.snapshot.paramMap.get('id');
 

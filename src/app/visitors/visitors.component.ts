@@ -18,6 +18,9 @@ export class VisitorsComponent implements OnInit {
     countQuestions:Number;
           
     ngOnInit() {
+      $.getScript("../../assets/js/jquery.vmap.js");
+      $.getScript("../../assets/js/jquery.vmap.world.js");
+
       this.countryService.getCountries().subscribe(
         countries => this.countries = countries
       );

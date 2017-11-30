@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { IUser } from '../../model/user';
 
 declare var echarts: any;
+declare var $: any;
 
 @Component({
   selector: 'app-users',
@@ -17,6 +18,8 @@ export class UsersComponent implements OnInit {
   years : Number[];
 
   ngOnInit() {
+    $.getScript("../../assets/js/echarts.min.js");
+
     const currentYear = new Date().getFullYear();
 
     this.years = new Array();
