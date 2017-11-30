@@ -6,8 +6,7 @@ import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-answers',
-  templateUrl: './answers.component.html',
-  providers: [AnswerService,MessageService]
+  templateUrl: './answers.component.html'
 })
 export class AnswersComponent implements OnInit {
 

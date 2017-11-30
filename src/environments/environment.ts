@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  SERVER_URL : "localhost:8080"
+  SERVER_URL : "localhost:8080",
+  SERVER_CONF : "https://raw.githubusercontent.com/mmuniz75/askalien-admin/master/server.properties"
 };
