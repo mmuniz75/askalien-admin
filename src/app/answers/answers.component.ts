@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IAnswerSummary } from '../../model/answer.summary';
 import { AnswerService } from '../../services/answer.service';
 import { MessageService } from '../../services/message.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-answers',
@@ -10,7 +11,8 @@ import { MessageService } from '../../services/message.service';
 })
 export class AnswersComponent implements OnInit {
 
-  constructor(private answerService : AnswerService) { }
+  constructor(private answerService : AnswerService,
+              private loginService : LoginService) { }
   
     answers:IAnswerSummary[];
           
@@ -34,6 +36,9 @@ export class AnswersComponent implements OnInit {
       );
     }
     
+    isAdmin():boolean{
+      return this.loginService.user.role=="ADMIN";
+    }
     
 
 }

@@ -14,7 +14,7 @@ import { environment } from '../environments/environment';
 export class VideoService extends Service{
 
   private videosUrl = `http://${environment.SERVER_URL}/videos`;
-  private videoUrl = `http://${environment.SERVER_URL}/video`;
+  private videoUrl = `http://${environment.SERVER_URL}2/video`;
    
     
   public getVideos() : Observable<Video[]>{

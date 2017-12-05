@@ -21,7 +21,7 @@
                       <tr class="headings">
                         <th class="column-title">Nº </th>
                         <th class="column-title">Question </th>
-                        <th class="column-title no-link last">
+                        <th class="column-title no-link last" *ngIf="isAdmin()">
                           <span class="nobr">Action</span>
                         </th>
                       </tr>
@@ -31,7 +31,7 @@
                       <tr class="even pointer" *ngFor="let answer of answers">
                         <td class=" ">{{answer.id}}</td>
                         <td class=" ">{{answer.subject}}</td>
-                        <td class=" last">
+                        <td class=" last" *ngIf="isAdmin()">
                           <a routerLink="/answer/{{answer.id}}">Edit</a>
                         </td>
                       </tr>

@@ -17,6 +17,7 @@ export class AnswerService extends Service{
   private topAnswersUrl = `http://${environment.SERVER_URL}/topanswers`;
   private answersUrl = `http://${environment.SERVER_URL}/answers`;
   private answerUrl = `http://${environment.SERVER_URL}/answer`;
+  private answerUrl2 = `http://${environment.SERVER_URL}2/answer`;
   private answerSummaryUrl = `http://${environment.SERVER_URL}/summary-answer`;
    
   
@@ -54,13 +55,13 @@ export class AnswerService extends Service{
   }
 
   public addAnswer (answer: AnswerDetail): Observable<AnswerDetail> {
-    return this.http.post<AnswerDetail>(this.answerUrl, answer,this.getHttpOptions())
+    return this.http.post<AnswerDetail>(this.answerUrl2, answer,this.getHttpOptions())
       .pipe(catchError(this.handleError<AnswerDetail>('AnswerService','addAnswer'))
     );
   }
 
   public updateAnswer (answer: AnswerDetail): Observable<AnswerDetail> {
-    return this.http.put<AnswerDetail>(this.answerUrl, answer,this.getHttpOptions())
+    return this.http.put<AnswerDetail>(this.answerUrl2, answer,this.getHttpOptions())
       .pipe(catchError(this.handleError<AnswerDetail>('AnswerService','updateAnswer'))
     );
   }

@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 
 import { Video } from '../../model/video';
 import { VideoService } from '../../services/video.service';
+import { LoginService } from '../../services/login.service';
 
 declare var $: any;
 
@@ -11,7 +12,8 @@ declare var $: any;
 })
 export class VideosComponent implements OnInit {
 
-  constructor(private videoService : VideoService) { }
+  constructor(private videoService : VideoService,
+             private loginService : LoginService) { }
   
     videos:Video[];
     video:Video;
@@ -54,4 +56,7 @@ export class VideosComponent implements OnInit {
       this.closeModal.nativeElement.click();
     }
 
+    isAdmin():boolean{
+      return this.loginService.user.role=="ADMIN";
+    }
 }

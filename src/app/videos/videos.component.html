@@ -7,7 +7,7 @@
             <div class="x_panel">
               <div class="x_title">
                 <h2>Videos</h2>
-                <ul class="nav navbar-right panel_toolbox">
+                <ul class="nav navbar-right panel_toolbox" *ngIf="isAdmin()">
                     <li><a (click)="addVideo()" data-toggle="modal" data-target=".video-dialog"><i class="fa fa-plus"></i></a>
                     </li>
                   </ul>
@@ -22,7 +22,7 @@
                       <tr class="headings">
                         <th class="column-title">Nº </th>
                         <th class="column-title">Date </th>
-                        <th class="column-title no-link last">
+                        <th class="column-title no-link last" *ngIf="isAdmin()">
                           <span class="nobr">Action</span>
                         </th>
                       </tr>
@@ -32,7 +32,7 @@
                       <tr class="even pointer" *ngFor="let video of videos">
                         <td class=" ">{{video.number}}</td>
                         <td class=" ">{{video.formatedCreationDate | date:"MM/dd/yyyy"}}</td>
-                        <td class=" last">
+                        <td class=" last" *ngIf="isAdmin()">
                           <a (click)="setVideo(video)" data-toggle="modal" data-target=".video-dialog" href="#">Edit</a>
                         </td>
                       </tr>

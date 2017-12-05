@@ -21,7 +21,7 @@
                 <li [class.current-page]="url == '/topanswers'"><a (click)="setUrl('/topanswers')" routerLink="/topanswers" ><i class="fa fa-level-up"></i> Top Answers</a></li>
                 <li [class.current-page]="url == '/answers'"><a  (click)="setUrl('/answers')" routerLink="/answers"><i class="fa fa-lightbulb-o"></i> Answers </a></li>
                 <li [class.current-page]="url == '/videos'"><a  (click)="setUrl('/videos')" routerLink="/videos"><i class="fa fa-video-camera"></i>Videos</a></li>
-                <li [class.current-page]="url == '/answer'"><a  (click)="setUrl('/answer')" routerLink="/answer"><i class="fa fa-plus"></i> Add Answer</a></li>
+                <li *ngIf="isAdmin()" [class.current-page]="url == '/answer'"><a  (click)="setUrl('/answer')" routerLink="/answer"><i class="fa fa-plus"></i> Add Answer</a></li>
               </ul>
             </div>
            
