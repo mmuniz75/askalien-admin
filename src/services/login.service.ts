@@ -15,6 +15,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class LoginService {
 
   public user : User;
+  public redirectUrl : string = '/';
 
   constructor(protected http: HttpClient) {} 
 
@@ -41,6 +42,14 @@ export class LoginService {
  
   public logout(){
     this.user=null;
+  }
+
+  public isLogged():boolean{
+    return this.user!=null;
+  }
+
+  public isAdmin():boolean{
+    return this.user.role=="ADMIN";
   }
   
 }

@@ -27,11 +27,11 @@ export class AppComponent {
   } 
 
   isLogin():boolean{
-    return this.loginService.user!=null;
+    return this.loginService.isLogged();
   }
 
   isAdmin():boolean{
-    return this.loginService.user.role=="ADMIN";
+    return this.loginService.isAdmin();
   }
 
   ngOnInit() {

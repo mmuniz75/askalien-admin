@@ -37,7 +37,7 @@ export class AnswersComponent implements OnInit {
     }
     
     isAdmin():boolean{
-      return this.loginService.user.role=="ADMIN";
+      return this.loginService.isAdmin();
     }
     
 

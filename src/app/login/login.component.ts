@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   forward(user:User){
     if(user.role) {
-      this.router.navigate(['/questions']);
+       this.router.navigate([this.loginService.redirectUrl]);
     }else
       this.showSnackBar("Invalid Login or password !");
   }
