@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IAnswer } from '../../model/Answer';
+import { IAnswer } from '../../model/answer';
 import { AnswerService } from '../../services/answer.service';
 import { MessageService } from '../../services/message.service';
 
