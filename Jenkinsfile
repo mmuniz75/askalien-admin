@@ -7,8 +7,7 @@ node {
       env.PATH="${env.NODEJS_HOME}/bin:node_modules/@angular/cli/bin:${env.PATH}"
       sh 'npm install'
    }
-  
-    stage('Compile Typescript') {
+   stage('Compile Typescript') {
 	  sh 'ng build --prod --build-optimizer'
     }    
    stage('Sync with AWS') {
