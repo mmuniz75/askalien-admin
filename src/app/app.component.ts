@@ -35,7 +35,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-     //this.url = location.pathname;
+     this.url = location.pathname!="/"?location.pathname:"/questions";
   }
 
   setUrl(value:string){
