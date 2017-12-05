@@ -25,6 +25,7 @@ import { QuestionService } from '../services/question.service';
 import { CountryService } from '../services/country.service';
 import { UserService } from '../services/user.service';
 import { Service } from '../services/service.service';
+import { LoginService } from '../services/login.service';
 
 
 const appRoutes: Routes = [
@@ -39,7 +40,7 @@ const appRoutes: Routes = [
   { path: 'answer/:id', component:AnswerComponent},
   { path: 'videos', component:VideosComponent},
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/questions', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   
 ];
 
@@ -64,7 +65,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [Service,QuestionService,AnswerService,VideoService,MessageService,CountryService,UserService],
+  providers: [LoginService,Service,QuestionService,AnswerService,VideoService,MessageService,CountryService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { catchError, map, tap } from 'rxjs/operators';
 import { Service } from './service.service';
-import { HTTP_OPTIONS } from './consts';
 
 import { environment } from '../environments/environment';
 
@@ -17,7 +16,7 @@ export class UserService extends Service{
   
   public getUsers(year:number) : Observable<IUser[]>{
 
-    return this.http.get<IUser[]>(`${this.usersUrl}/${year}`,HTTP_OPTIONS)
+    return this.http.get<IUser[]>(`${this.usersUrl}/${year}`,this.getHttpOptions())
                         .pipe(
                           catchError(this.handleError('UserService','getUsers', []))
                         );

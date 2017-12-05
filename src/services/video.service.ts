@@ -7,8 +7,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { catchError, map, tap } from 'rxjs/operators';
 import { Service } from './service.service';
-import { HTTP_OPTIONS } from './consts';
-
 
 import { environment } from '../environments/environment';
 
@@ -20,7 +18,7 @@ export class VideoService extends Service{
    
     
   public getVideos() : Observable<Video[]>{
-        return this.http.get<Video[]>(this.videosUrl,HTTP_OPTIONS)
+        return this.http.get<Video[]>(this.videosUrl,this.getHttpOptions())
                                       .pipe(
                                         catchError(this.handleError('VideoService','getVideos', []))
                                       );
@@ -28,7 +26,7 @@ export class VideoService extends Service{
 
     
   public saveVideo(video:Video): Observable<Video>{
-      return this.http.post<Video>(this.videoUrl, video, HTTP_OPTIONS)
+      return this.http.post<Video>(this.videoUrl, video, this.getHttpOptions())
                             .pipe(
                               catchError(this.handleError<Video>('VideoService','saveVideo'))
                           );

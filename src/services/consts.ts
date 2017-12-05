@@ -1,5 +1,2 @@
-import { HttpHeaders } from '@angular/common/http';
+export const SERVER_CONF = "https://raw.githubusercontent.com/mmuniz75/askalien-admin/master/server.properties";
 
-export const HTTP_OPTIONS = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'Basic ' +  btoa('admin:111') })
- };

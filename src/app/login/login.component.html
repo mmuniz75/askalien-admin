@@ -1,4 +1,4 @@
-
+    <div id="snackbar" [class]="snackClass">{{snackMessage}}</div>
     <div>
         <a class="hiddenanchor" id="signup"></a>
         <a class="hiddenanchor" id="signin"></a>
@@ -9,13 +9,13 @@
               <form>
                 <h1>Login Form</h1>
                 <div>
-                  <input type="text" class="form-control" placeholder="Username" required="" />
+                  <input #user type="text" class="form-control" placeholder="Username" required="" />
                 </div>
                 <div>
-                  <input type="password" class="form-control" placeholder="Password" required="" />
+                  <input #password type="password" class="form-control" placeholder="Password" required="" />
                 </div>
                 <div>
-                  <a class="btn btn-default submit" routerLink="/heroes" routerLinkActive="active">Log in</a>
+                  <a class="btn btn-default submit" (click)="login(user.value,password.value)" >Log in</a>
                 </div>
   
                 <div class="clearfix"></div>

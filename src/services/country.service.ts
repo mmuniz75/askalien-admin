@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { catchError, map, tap } from 'rxjs/operators';
 import { Service } from './service.service';
-import { HTTP_OPTIONS } from './consts';
 
 import { environment } from '../environments/environment';
 
@@ -17,7 +16,7 @@ export class CountryService extends Service{
 
   public getCountries() : Observable<ICountry[]>{
 
-    return this.http.get<ICountry[]>(this.countriesUrl,HTTP_OPTIONS)
+    return this.http.get<ICountry[]>(this.countriesUrl,this.getHttpOptions())
                         .pipe(
                           catchError(this.handleError('CountryService','getCountries', []))
                         );
@@ -25,7 +24,7 @@ export class CountryService extends Service{
 
   public getCountriesCode() : Observable<any[]>{
     
-    return this.http.get<any[]>(this.countriesCodeUrl,HTTP_OPTIONS)
+    return this.http.get<any[]>(this.countriesCodeUrl,this.getHttpOptions())
                         .pipe(
                           catchError(this.handleError('CountryService','getCountries', []))
                         );

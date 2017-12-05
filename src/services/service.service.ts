@@ -3,16 +3,19 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
+import { LoginService } from '../services/login.service';
 import { HttpClient} from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
-import { environment } from '../environments/environment';
+import { SERVER_CONF } from './consts';
 import { IServer } from '../model/server';
 
 @Injectable()
 export class Service {
 
   constructor(protected http: HttpClient,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private loginService: LoginService) { }
 
     
     handleError<T> (service:string,operation = 'operation', result?: T) {
@@ -30,12 +33,24 @@ export class Service {
     }
 
     public configServer():Observable<IServer>{
-      return this.http.get<IServer>(environment.SERVER_CONF)
+      return this.http.get<IServer>(SERVER_CONF)
             .pipe(
               catchError(this.handleError<IServer>('Service','configServer'))
             );
     }
     
+    public getHttpOptions(){
+      let user = this.loginService.user;
+      let options = {};
+      if(user){
+        let token = btoa(`${user.login}:${user.password}`); 
+        options = {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                    'Authorization': `Basic ${token}`})
+        };
+      }
+      return options;                         
+   };
       
 }    
 
