@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if(environment.production)
       this.service.configServer().subscribe(
-        server => environment.SERVER_URL = server.server + '/admin'
+        _ => console.log("server set to " + environment.SERVER_URL)
       )
   }
 

@@ -9,6 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { SERVER_CONF } from './consts';
 import { IServer } from '../model/server';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class Service {
@@ -35,8 +36,13 @@ export class Service {
     public configServer():Observable<IServer>{
       return this.http.get<IServer>(SERVER_CONF)
             .pipe(
+              tap(server => this.setServer(server)),
               catchError(this.handleError<IServer>('Service','configServer'))
             );
+    }
+
+    private setServer(server){
+      environment.SERVER_URL = server.server + '/admin'
     }
     
     public getHttpOptions(){
