@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ICountry } from '../model/Country';
+import { ICountry } from '../model/country';
 import { Observable } from 'rxjs/Observable';
 
 import { catchError, map, tap } from 'rxjs/operators';
