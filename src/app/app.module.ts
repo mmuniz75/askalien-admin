@@ -27,6 +27,7 @@ import { UserService } from '../services/user.service';
 import { Service } from '../services/service.service';
 import { LoginService } from '../services/login.service';
 import { AuthGuard } from '../services/auth-guard.service';
+import { AnswerListComponent } from './answer-list/answer-list.component';
 
 
 const appRoutes: Routes = [
@@ -41,6 +42,8 @@ const appRoutes: Routes = [
   { path: 'answer/:id', component:AnswerComponent ,canActivate: [AuthGuard]},
   { path: 'videos', component:VideosComponent ,canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
+  { path: 'answer-list', component: AnswerListComponent },
+  { path: 'answer-list/:from/:to', component: AnswerListComponent },
   { path: '', redirectTo: '/questions', pathMatch: 'full' ,canActivate: [AuthGuard]},
   
 ];
@@ -57,7 +60,8 @@ const appRoutes: Routes = [
     AnswerComponent,
     VideosComponent,
     QuestionDetailComponent,
-    MessageComponent
+    MessageComponent,
+    AnswerListComponent
   ],
   imports: [
     BrowserModule,

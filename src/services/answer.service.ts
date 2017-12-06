@@ -19,6 +19,7 @@ export class AnswerService extends Service{
   private answerUrl = `http://${environment.SERVER_URL}/answer`;
   private answerUrl2 = `http://${environment.SERVER_URL}2/answer`;
   private answerSummaryUrl = `http://${environment.SERVER_URL}/summary-answer`;
+  private answersListUrl = `http://${environment.SERVER_URL.replace('/admin','')}/answers`;
    
   
   public getTopAnswers(feedback:Boolean) : Observable<IAnswer[]>{
@@ -64,6 +65,19 @@ export class AnswerService extends Service{
     return this.http.put<AnswerDetail>(this.answerUrl2, answer,this.getHttpOptions())
       .pipe(catchError(this.handleError<AnswerDetail>('AnswerService','updateAnswer'))
     );
+  }
+
+  public listAnswers(from:Number,to:Number) : Observable<IAnswerSummary[]>{
+    
+    let url = this.answersListUrl;
+
+    if(from && to)
+      url = `${url}/${from}/${to}`;
+
+    return this.http.get<IAnswerSummary[]>(url,this.getHttpOptions())
+      .pipe(
+        catchError(this.handleError('AnswerService','getAnswers', []))
+      );
   }
 
   public isValid(answer:AnswerDetail):boolean{
