@@ -67,19 +67,6 @@ export class AnswerService extends Service{
     );
   }
 
-  public listAnswers(from:Number,to:Number) : Observable<IAnswerSummary[]>{
-    
-    let url = this.answersListUrl;
-
-    if(from && to)
-      url = `${url}/${from}/${to}`;
-
-    return this.http.get<IAnswerSummary[]>(url,this.getHttpOptions())
-      .pipe(
-        catchError(this.handleError('AnswerService','getAnswers', []))
-      );
-  }
-
   public isValid(answer:AnswerDetail):boolean{
     if (answer.question && answer.question.length > 0
         && answer.video && 

@@ -17,7 +17,6 @@ export class TopanswersComponent implements OnInit {
     answers:IAnswer[];
       
     ngOnInit() {
-      $.getScript("../../assets/js/icheck.min.js");
       $.getScript("../../assets/js/custom.min.js");
       this.loadTopAnswers(false);
     }
