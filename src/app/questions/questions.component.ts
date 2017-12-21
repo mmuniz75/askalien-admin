@@ -52,11 +52,13 @@ export class QuestionsComponent implements OnInit {
     let self = this;
     $('input').on('ifChecked', function(event){
       self.filter.justFeedback=true;
+      self.clearDates();
       self.reloadQuestions();
     });
 
     $('input').on('ifUnchecked', function(event){
         self.filter.justFeedback=false;
+        self.resetDates();
         self.reloadQuestions();
     });
     
@@ -67,11 +69,6 @@ export class QuestionsComponent implements OnInit {
   }
 
   private reloadQuestions(){
-    if( (!this.filter.ipFilter || this.filter.ipFilter == "") && (!this.filter.question || this.filter.question =="") ){
-      this.filter.startDates();
-      $('#reportrange_right span').html(moment().startOf('month').format('MMMM D, YYYY') + ' - ' + moment().endOf('month').format('MMMM D, YYYY'));
-    }  
-
     this._questionService.getQuestionsByFilter(this.filter).subscribe(
       questions => this.questions=questions
     );
@@ -89,16 +86,29 @@ export class QuestionsComponent implements OnInit {
   }
 
   private filterByText(){
-    $('#reportrange_right span').html("");
-     this.filter.startDate = null;
-     this.filter.endDate = null;
-     this.filter.justFeedback = null;
-     this.reloadQuestions();
+    if( (!this.filter.ipFilter || this.filter.ipFilter == "") && (!this.filter.question || this.filter.question =="") ){
+      this.resetDates();
+    }else 
+      this.clearDates();
+    
+    this.filter.justFeedback = null;
+    this.reloadQuestions();
   }
 
   backList(){
     this.location.back();
   }  
+
+  private resetDates(){
+    this.filter.startDates();
+    $('#reportrange_right span').html(moment().startOf('month').format('MMMM D, YYYY') + ' - ' + moment().endOf('month').format('MMMM D, YYYY'));
+  }
+
+  private clearDates(){
+    $('#reportrange_right span').html("");
+    this.filter.startDate = null;
+    this.filter.endDate = null;
+  }
 
 
 }
