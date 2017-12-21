@@ -8,7 +8,7 @@ node {
       sh 'npm install'
    }
    stage('Compile Typescript') {
-	  sh 'ng build --prod --build-optimizer'
+	  sh 'ng build --prod --build-optimizer || true'
     }    
    stage('Sync with AWS') {
 	 sh "export PATH=/var/jenkins_home/.local/bin:$PATH && aws s3 sync dist s3://aws-website-askalien-admin-9qzt9/ --delete"
