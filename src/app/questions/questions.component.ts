@@ -3,17 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { IQuestion } from '../../model/question';
+import { IQuestionDetail } from '../../model/question.detail';
 import { IStatistic } from '../../model/statistic';
 import { QuestionService } from '../../services/question.service';
 import { QuestionFilter } from '../../services/question.filter';
-
 
 declare var $: any;
 declare var moment: any;
 
 @Component({
   selector: 'app-questions',
-  templateUrl: './questions.component.html'
+  templateUrl: './questions.component.html',
+  styleUrls: ['./questions.component.css']
 })
 export class QuestionsComponent implements OnInit {
 
@@ -23,17 +24,19 @@ export class QuestionsComponent implements OnInit {
 
 
   questions:IQuestion[];
+  question:IQuestionDetail;
   statistic:IStatistic;
   errorMessage: String;
   answerId:Number;
   filter:QuestionFilter;
+  @ViewChild('divDetail') el:ElementRef;
   
   ngOnInit() {
     $.getScript("../../assets/js/custom.min.js");
     
     this.filter = new QuestionFilter();
     this.answerId = +this.route.snapshot.paramMap.get('id');
-
+    
     if(this.answerId)
         this._questionService.getQuestionsByAnswer(this.answerId).subscribe(
           questions => this.questions=questions
@@ -108,6 +111,18 @@ export class QuestionsComponent implements OnInit {
     $('#reportrange_right span').html("");
     this.filter.startDate = null;
     this.filter.endDate = null;
+  }
+
+  openDetail(questionId) {
+    this._questionService.getQuestion(questionId).subscribe(
+      question => this.question = question,
+      error => this.errorMessage = error
+    );
+    this.el.nativeElement.style.width = "100%";
+  }
+  
+  closeDetail() {
+    this.el.nativeElement.style.width = "0%";
   }
 
 

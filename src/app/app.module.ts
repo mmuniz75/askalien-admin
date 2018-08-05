@@ -15,7 +15,6 @@ import { UsersComponent } from './users/users.component';
 import { AnswersComponent } from './answers/answers.component';
 import { AnswerComponent } from './answer/answer.component';
 import { VideosComponent } from './videos/videos.component';
-import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { MessageComponent } from './message/message.component';
 
 import { AnswerService } from '../services/answer.service';
@@ -32,7 +31,6 @@ import { AuthGuard } from '../services/auth-guard.service';
 const appRoutes: Routes = [
   { path: 'questions', component: QuestionsComponent ,canActivate: [AuthGuard] },
   { path: 'questions/:id', component: QuestionsComponent ,canActivate: [AuthGuard]},
-  { path: 'question-detail/:id', component: QuestionDetailComponent ,canActivate: [AuthGuard]},
   { path: 'topanswers', component:TopanswersComponent ,canActivate: [AuthGuard]},
   { path: 'visitors', component:VisitorsComponent ,canActivate: [AuthGuard]},
   { path: 'users', component:UsersComponent ,canActivate: [AuthGuard]},
@@ -56,7 +54,6 @@ const appRoutes: Routes = [
     AnswersComponent,
     AnswerComponent,
     VideosComponent,
-    QuestionDetailComponent,
     MessageComponent
   ],
   imports: [
