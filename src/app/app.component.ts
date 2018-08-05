@@ -23,7 +23,7 @@ export class AppComponent {
   }
 
   getUserName():string{
-    return this.loginService.user.login;
+    return this.loginService.getUser().login;
   } 
 
   isLogin():boolean{

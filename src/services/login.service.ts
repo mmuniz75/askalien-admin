@@ -10,11 +10,12 @@ import { environment } from '../environments/environment';
 
 import { HttpHeaders } from '@angular/common/http';
 
+import { USER } from './consts';
+
 
 @Injectable()
 export class LoginService {
 
-  public user : User;
   public redirectUrl : string = '/';
 
   constructor(protected http: HttpClient) {} 
@@ -36,20 +37,25 @@ export class LoginService {
   
   private setUser(user){
     if(user.role) {
-      this.user=user
+      localStorage.setItem(USER, JSON.stringify(user));
     }  
+  }
+
+  public getUser(){
+    const user = JSON.parse(localStorage.getItem(USER));
+    return user;
   }
  
   public logout(){
-    this.user=null;
+    localStorage.removeItem(USER);
   }
 
   public isLogged():boolean{
-    return this.user!=null;
+    return this.getUser()!=null;
   }
 
   public isAdmin():boolean{
-    return this.user.role=="ADMIN";
+    return this.getUser().role=="ADMIN";
   }
   
 }

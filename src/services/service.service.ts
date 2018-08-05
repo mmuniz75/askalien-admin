@@ -46,7 +46,7 @@ export class Service {
     }
     
     public getHttpOptions(){
-      let user = this.loginService.user;
+      let user = this.loginService.getUser();
       let options = {};
       if(user){
         let token = btoa(`${user.login}:${user.password}`); 
