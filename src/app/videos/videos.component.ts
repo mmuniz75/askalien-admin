@@ -18,12 +18,19 @@ export class VideosComponent implements OnInit {
     videos:Video[];
     video:Video;
     @ViewChild('closeModal') closeModal: ElementRef;
+    loading: boolean;
           
     ngOnInit() {
+      this.loading = true;
       this.videoService.getVideos().subscribe(
-        videos => this.videos = videos
+        videos => this.setVideos(videos)
       );
       $.getScript("../../assets/js/custom.min.js");
+    }
+
+    setVideos(videos:Video[]): void{
+      this.videos = videos;
+      this.loading = false;
     }
 
     setVideo(video:Video):void{

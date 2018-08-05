@@ -1,6 +1,7 @@
 <div class="right_col" role="main">
-  <div class="x_panel">
-      <div class="x_title">
+  <div class="Loader" *ngIf='loading' >Loading...</div>
+  <div class="x_panel" >
+      <div class="x_title" *ngIf='!loading'>
         <h2>Users Access</h2>
         <div class="nav navbar-right panel_toolbox">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Year</label>

@@ -15,6 +15,7 @@ export class TopanswersComponent implements OnInit {
   constructor(private answerService : AnswerService) { }
   
     answers:IAnswer[];
+    loading: boolean;
       
     ngOnInit() {
       $.getScript("../../assets/js/custom.min.js");
@@ -34,10 +35,15 @@ export class TopanswersComponent implements OnInit {
     }
 
     loadTopAnswers(feedback){
+      this.loading = true;
       this.answerService.getTopAnswers(feedback).subscribe(
-        Answers => this.answers=Answers
+        answers => this.setAnswers(answers)
       );
     }
   
+    setAnswers(answers){
+      this.answers=answers;
+      this.loading = false;
+    }
 
 }

@@ -1,6 +1,7 @@
 <div class="right_col" role="main">
-  <div class="x_panel">
-    <div class="x_title">
+  <div class="Loader" *ngIf='loading' >Loading...</div>
+  <div class="x_panel" >
+    <div class="x_title" *ngIf='!loading'>
       <h2>Visitors location
         <small>geo-presentation</small>
       </h2>
@@ -9,7 +10,7 @@
     <app-message></app-message>
     <div class="x_content">
       <div class="dashboard-widget-content">
-        <div class="col-md-4 hidden-small">
+        <div class="col-md-4 hidden-small" *ngIf='!loading'>
           <h2 class="line_30">{{countQuestions}} Views from {{countries?.length}} countries</h2>
 
           <table class="countries_list">

@@ -13,7 +13,8 @@
                 <div class="clearfix"></div>
               </div>
               <app-message></app-message>
-              <div class="x_content">
+              <div class="Loader" *ngIf='loading' >Loading...</div>
+              <div class="x_content" *ngIf='!loading'>
     
                 <div class="table-responsive">
                   <table class="table table-striped jambo_table bulk_action">

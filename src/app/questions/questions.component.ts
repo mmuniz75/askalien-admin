@@ -30,8 +30,10 @@ export class QuestionsComponent implements OnInit {
   answerId:Number;
   filter:QuestionFilter;
   @ViewChild('divDetail') el:ElementRef;
+  loading: boolean;
   
   ngOnInit() {
+    this.loading = true;
     $.getScript("../../assets/js/custom.min.js");
     
     this.filter = new QuestionFilter();
@@ -39,11 +41,11 @@ export class QuestionsComponent implements OnInit {
     
     if(this.answerId)
         this._questionService.getQuestionsByAnswer(this.answerId).subscribe(
-          questions => this.questions=questions
+          questions => this.setQuestions(questions)
         );
     else {
         this._questionService.getQuestions().subscribe(
-                                        questions => this.questions=questions
+                                        questions => this.setQuestions(questions)
                                       );
         this._questionService.getStatistic().subscribe(
           statistic => this.statistic = statistic
@@ -72,19 +74,26 @@ export class QuestionsComponent implements OnInit {
   }
 
   private reloadQuestions(){
+    this.loading = true;
     this._questionService.getQuestionsByFilter(this.filter).subscribe(
-      questions => this.questions=questions
+      questions => this.setQuestions(questions)
     );
   }
 
+  private setQuestions(questions){
+    this.questions=questions;
+    this.loading = false;
+  }
+
   private filterByDates(startDate:Date,endDate:Date){
+    this.loading = true;
     this.filter.startDate = startDate;
     this.filter.endDate = endDate;
     this.filter.ipFilter = "";
     this.filter.question = "";
     this.filter.justFeedback = null;
     this._questionService.getQuestionsByFilter(this.filter).subscribe(
-      questions => this.questions=questions
+      questions => this.setQuestions(questions)
     );
   }
 

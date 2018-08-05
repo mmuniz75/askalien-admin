@@ -16,8 +16,10 @@ export class UsersComponent implements OnInit {
   constructor(private userService : UserService) { }
 
   years : Number[];
+  loading: boolean;
 
   ngOnInit() {
+    this.loading = true;
     const currentYear = new Date().getFullYear();
 
     this.years = new Array();
@@ -328,7 +330,7 @@ export class UsersComponent implements OnInit {
       // use configuration item and data specified to show chart
       myChart.setOption(option);
     }
-
+    this.loading = false;
   }
 
 }

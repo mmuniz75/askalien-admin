@@ -16,8 +16,10 @@ export class VisitorsComponent implements OnInit {
   
     countries:ICountry[];
     countQuestions:Number;
+    loading: boolean;
           
     ngOnInit() {
+      this.loading = true;
       this.countryService.getCountries().subscribe(
         countries => this.countries = countries
       );
@@ -48,7 +50,7 @@ export class VisitorsComponent implements OnInit {
               });
             
             }
-            
+            this.loading = false;        
     };
 
 }
