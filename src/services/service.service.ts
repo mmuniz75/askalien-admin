@@ -8,6 +8,7 @@ import { HttpClient} from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
 import { SERVER_CONF } from './consts';
+import { URL_CHASH } from './consts';
 import { IServer } from '../model/server';
 import { environment } from '../environments/environment';
 
@@ -43,6 +44,7 @@ export class Service {
 
     private setServer(server){
       environment.SERVER_URL = server.server + '/admin'
+      localStorage.setItem(URL_CHASH,environment.SERVER_URL);
     }
     
     public getHttpOptions(){
