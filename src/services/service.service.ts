@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import { LoginService } from '../services/login.service';
+import { LoginService } from './login.service';
 import { HttpClient} from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 

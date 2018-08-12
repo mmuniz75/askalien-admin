@@ -48,6 +48,7 @@ export class LoginService {
  
   public logout(){
     localStorage.removeItem(USER);
+    localStorage.removeItem("url_cash");
   }
 
   public isLogged():boolean{

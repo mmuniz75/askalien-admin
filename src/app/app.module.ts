@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { TopanswersComponent } from './topanswers/topanswers.component';
 import { VisitorsComponent } from './visitors/visitors.component';
 import { UsersComponent } from './users/users.component';
+import { ViewsComponent } from './views/view.component';
 import { AnswersComponent } from './answers/answers.component';
 import { AnswerComponent } from './answer/answer.component';
 import { VideosComponent } from './videos/videos.component';
@@ -23,6 +24,7 @@ import { VideoService } from '../services/video.service';
 import { QuestionService } from '../services/question.service';
 import { CountryService } from '../services/country.service';
 import { UserService } from '../services/user.service';
+import { ViewService } from '../services/view.service';
 import { Service } from '../services/service.service';
 import { LoginService } from '../services/login.service';
 import { AuthGuard } from '../services/auth-guard.service';
@@ -34,6 +36,7 @@ const appRoutes: Routes = [
   { path: 'topanswers', component:TopanswersComponent ,canActivate: [AuthGuard]},
   { path: 'visitors', component:VisitorsComponent ,canActivate: [AuthGuard]},
   { path: 'users', component:UsersComponent ,canActivate: [AuthGuard]},
+  { path: 'views', component:ViewsComponent ,canActivate: [AuthGuard]},
   { path: 'answers', component:AnswersComponent ,canActivate: [AuthGuard]},
   { path: 'answer', component:AnswerComponent ,canActivate: [AuthGuard]},
   { path: 'answer/:id', component:AnswerComponent ,canActivate: [AuthGuard]},
@@ -51,6 +54,7 @@ const appRoutes: Routes = [
     TopanswersComponent,
     VisitorsComponent,
     UsersComponent,
+    ViewsComponent,
     AnswersComponent,
     AnswerComponent,
     VideosComponent,
@@ -63,7 +67,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthGuard,LoginService,Service,QuestionService,AnswerService,VideoService,MessageService,CountryService,UserService],
+  providers: [AuthGuard,LoginService,Service,QuestionService,AnswerService,VideoService,MessageService,CountryService,UserService,ViewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

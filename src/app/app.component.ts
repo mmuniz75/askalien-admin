@@ -35,7 +35,8 @@ export class AppComponent {
 
   ngOnInit() {
      this.url = location.pathname!="/"?location.pathname:"/questions";
-     environment.SERVER_URL = localStorage.getItem("url_cash");
+     if(localStorage.getItem("url_cash"))
+        environment.SERVER_URL = localStorage.getItem("url_cash");
   }
 
   setUrl(value:string){
