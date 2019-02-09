@@ -16,10 +16,19 @@
 /* Position the content inside the overlay */
 .overlay-content {
     position: relative;
-    top: 25%; /* 25% from the top */
-    width: 100%; /* 100% width */
-    text-align: center; /* Centered text/links */
-    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+    top: 2rem;
+    width: 80%; /* 100% width */
+    text-align: left; /* Centered text/links */
+    margin: auto;
+    background: #F5F7FA;
+    max-width: 80rem;
+}
+
+.x_content {
+    position: relative;
+    width: 100%;
+    background: #F5F7FA;
+    padding: 4rem;
 }
 
 /* The navigation links inside the overlay */
@@ -44,6 +53,20 @@
     right: 45px;
     font-size: 60px;
 }
+
+.messages {
+    padding: 2rem;
+}
+
+footer {
+    background: #F5F7FA;
+    text-align: right;
+}
+
+.space-down {
+    margin-bottom: 4rem;
+}
+
 
 /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
 @media screen and (max-height: 450px) {
