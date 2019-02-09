@@ -8,16 +8,18 @@
             <section class="login_content">
               <form>
                 <h1>Login Form</h1>
-                <div>
-                  <input #user type="text" autocomplete="true" class="form-control" placeholder="Username" required="true" />
+                <div class="Loader" *ngIf='processing' >Loading...</div>
+                <div *ngIf='!processing'>
+                  <div>
+                    <input #user type="text" autocomplete="true" class="form-control" placeholder="Username" required="true" />
+                  </div>
+                  <div>
+                    <input #password type="password" autocomplete="true" class="form-control" placeholder="Password" required="true" />
+                  </div>
+                  <div>
+                    <a class="btn btn-default submit" (click)="login(user.value,password.value)" >Log in</a>
+                  </div>
                 </div>
-                <div>
-                  <input #password type="password" autocomplete="true" class="form-control" placeholder="Password" required="true" />
-                </div>
-                <div>
-                  <a class="btn btn-default submit" (click)="login(user.value,password.value)" >Log in</a>
-                </div>
-  
                 <div class="clearfix"></div>
   
                 <div class="separator">

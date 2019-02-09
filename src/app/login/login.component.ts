@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   message:string;
   snackClass : String;
   snackMessage : String;
+  processing : Boolean = false ;
 
   constructor(private loginService : LoginService,
               private service : Service,
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(login:string,password:string){
+    this.processing = true;
     const user = new User();
     user.login = login;
     user.password = password;
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
     if(user.role) {
        this.router.navigate([this.loginService.redirectUrl]);
     }else
+      this.processing = false;
       this.showSnackBar("Invalid Login or password !");
   }
 
