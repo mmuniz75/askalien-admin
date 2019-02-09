@@ -197,18 +197,19 @@
             
           </div>
 
+          <ul class="messages" *ngIf="question.feedback">
+              <li>
+                <img src="assets/images/img.jpg" class="avatar" alt="Avatar">
+                <div class="message_wrapper">
+                  <h4 class="heading">Comments</h4>
+                  <blockquote class="message">{{question.feedback}}</blockquote>
+                </div>
+              </li>
+            </ul>
+
         </div>
         
-        <ul class="messages" *ngIf="question.feedback">
-          <li>
-            <img src="assets/images/img.jpg" class="avatar" alt="Avatar">
-            <div class="message_wrapper">
-              <h4 class="heading">Comments</h4>
-              <blockquote class="message">{{question.feedback}}</blockquote>
-              <br />
-            </div>
-          </li>
-        </ul>
+        
             
   </div>
 </div>
