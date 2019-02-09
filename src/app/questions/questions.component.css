@@ -11,22 +11,22 @@
     background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
     overflow-x: hidden; /* Disable horizontal scroll */
     transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Position the content inside the overlay */
 .overlay-content {
-    position: relative;
-    top: 2rem;
-    width: 80%; /* 100% width */
-    text-align: left; /* Centered text/links */
-    margin: auto;
+    margin-top: 6rem;
+    width: 80%; 
+    text-align: left;
     background: #F5F7FA;
     max-width: 80rem;
 }
 
 .x_content {
-    position: relative;
-    width: 100%;
     background: #F5F7FA;
     padding: 4rem;
 }

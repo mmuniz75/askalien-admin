@@ -164,39 +164,40 @@
   <a href="javascript:void(0)" class="closebtn" (click)="closeDetail()">&times;</a>
   <!-- Overlay content -->
   <div class="overlay-content" *ngIf='question'>
-          <app-message></app-message>
-          <div class="x_content">
-              <h3 class="space-down">Question : "{{question.text}}"</h3>
+        <app-message></app-message>
+        
+        <div class="x_content">
+            <h3 class="space-down">Question : "{{question.text}}"</h3>
 
-              <h3 class="space-down">{{question.creator}}</h3>
+            <h3 class="space-down">{{question.creator}}</h3>
 
-              <ul class="list-unstyled user_data space-down">
-                <li>
-                  <i class="fa fa-map-marker user-profile-icon"></i> {{question.country}} (IP:{{question.ip}})
-                </li>
+            <ul class="list-unstyled user_data space-down">
+              <li>
+                <i class="fa fa-map-marker user-profile-icon"></i> {{question.country}} (IP:{{question.ip}})
+              </li>
 
-                <li class="m-top-xs" *ngIf="question.email">
-                  <i class="fa fa-envelope-o user-profile-icon"></i> {{question.email}}
-                </li>
+              <li class="m-top-xs" *ngIf="question.email">
+                <i class="fa fa-envelope-o user-profile-icon"></i> {{question.email}}
+              </li>
 
-                <li class="m-top-xs">
-                  <i class="fa fa-clock-o user-profile-icon"></i> {{question.date}}
-                </li>
-              </ul>
+              <li class="m-top-xs">
+                <i class="fa fa-clock-o user-profile-icon"></i> {{question.date}}
+              </li>
+            </ul>
 
 
-            <div class="tab-pane active" id="home">
-              <p class="lead">{{question.answer.number}} - {{question.answer.question}}</p>
+          <div class="tab-pane active" id="home">
+            <p class="lead">{{question.answer.number}} - {{question.answer.question}}</p>
 
-              <p [innerHTML]='question.answer.content'></p>
-              
-                <footer>From video {{question.answer.videoNumber}} # -
-                  <cite title="Source Title">{{question.answer.date}}</cite>
-                </footer>
-              
-            </div>
-
+            <p [innerHTML]='question.answer.content'></p>
+            
+              <footer>From video {{question.answer.videoNumber}} # -
+                <cite title="Source Title">{{question.answer.date}}</cite>
+              </footer>
+            
           </div>
+
+        </div>
         
         <ul class="messages" *ngIf="question.feedback">
           <li>
@@ -208,6 +209,6 @@
             </div>
           </li>
         </ul>
-    
+            
   </div>
 </div>
