@@ -1,5 +1,5 @@
 export interface IQuestion {
-    date: String,
+    creationDate: String,
     ip: String,
     country: String,
     text: String,

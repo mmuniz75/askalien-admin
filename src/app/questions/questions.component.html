@@ -130,7 +130,7 @@
 
                 <tbody>
                   <tr class="even pointer" *ngFor="let question of questions">
-                    <td class=" ">{{question.date}}</td>
+                    <td class=" ">{{question.creationDate}}</td>
                     <td class=" ">{{question.ip}}</td>
                     <td class=" ">{{question.country}}</td>
                     <td class=" ">{{question.text}}</td>
@@ -191,8 +191,8 @@
 
             <p [innerHTML]='question.answer.content'></p>
             
-              <footer>From video {{question.answer.videoNumber}} # -
-                <cite title="Source Title">{{question.answer.date}}</cite>
+              <footer>From video {{question.answer.video.number}} # -
+                <cite title="Source Title">{{question.answer.video.creationDate}}</cite>
               </footer>
             
           </div>
