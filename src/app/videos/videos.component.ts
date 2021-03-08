@@ -53,10 +53,11 @@ export class VideosComponent implements OnInit {
     }
     
     updateList(video:Video,isNew:boolean){
-      if(isNew)
+      if(isNew && video)
         this.videos.splice(0,0,video);
       
-      this.closeModal.nativeElement.click();
+      if(video)
+        this.closeModal.nativeElement.click();
     }
 
     isAdmin():boolean{

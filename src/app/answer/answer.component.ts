@@ -72,8 +72,6 @@ export class AnswerComponent implements OnInit {
       }else{
         this.location.back();
       }  
-    }else{
-      this.messageService.add("Video not found");
     }
   }
 
