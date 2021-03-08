@@ -4,8 +4,8 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                   <div class="x_title">
-                    <h2 *ngIf='!answer?.number'>New Answer</h2>
-                    <h2 *ngIf='answer?.number'>Edit Answer {{answer?.number}}</h2>
+                    <h2 *ngIf='!answer?.id'>New Answer</h2>
+                    <h2 *ngIf='answer?.id'>Edit Answer {{answer?.id}}</h2>
                     <br>
                      <div class="clearfix"></div>
                   </div>
@@ -18,7 +18,7 @@
                               <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input *ngIf="answer" [(ngModel)]="answer.video.number" type="number" id="video" name="video" required="required" class="form-control col-md-7 col-xs-12">
+                              <input *ngIf="answer" [(ngModel)]="answer.videoNumber" type="number" id="video" name="video" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
 
@@ -155,10 +155,10 @@
                           <div class="ln_solid"></div>
                           <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                              <button *ngIf='answer?.number' type="button" (click)="backList()" class="btn btn-primary">Cancel</button>
+                              <button *ngIf='answer?.id' type="button" (click)="backList()" class="btn btn-primary">Cancel</button>
                               <button id="save" type="submit" class="btn btn-success" (click)="saveAnswer(answer)">
-                                <span *ngIf='answer?.number'>Save Changes</span>
-                                <span *ngIf='!answer?.number'>Add Answer</span>
+                                <span *ngIf='answer?.id'>Save Changes</span>
+                                <span *ngIf='!answer?.id'>Add Answer</span>
                               </button>
                             </div>
                           </div>

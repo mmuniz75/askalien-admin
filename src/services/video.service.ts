@@ -33,7 +33,7 @@ export class VideoService extends Service{
   }
 
   public isValid(video:Video):boolean{
-    if (video.formatedCreationDate && video.formatedCreationDate.length > 0
+    if (video.creationDate 
         && video.number && video.number > 0)
         return true;
     else 

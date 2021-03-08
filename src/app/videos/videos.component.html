@@ -32,7 +32,7 @@
                     <tbody>
                       <tr class="even pointer" *ngFor="let video of videos">
                         <td class=" ">{{video.number}}</td>
-                        <td class=" ">{{video.formatedCreationDate | date:"MM/dd/yyyy"}}</td>
+                        <td class=" ">{{video.creationDate}}</td>
                         <td class=" last" *ngIf="isAdmin()">
                           <a (click)="setVideo(video)" data-toggle="modal" data-target=".video-dialog" href="#">Edit</a>
                         </td>
@@ -78,7 +78,7 @@
                     </label>
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class='input-group date' id='myDatepicker'>
-                            <input *ngIf='video' [(ngModel)]='video.formatedCreationDate' [ngModelOptions]="{standalone: true}" id="date" class="form-control col-md-7 col-xs-12" name="date" required="required" type="date">
+                            <input *ngIf='video' [(ngModel)]='video.creationDate' [ngModelOptions]="{standalone: true}" id="date" class="form-control col-md-7 col-xs-12" name="date" required="required" type="date">
                             <input *ngIf='video' [(ngModel)]='video.id' [ngModelOptions]="{standalone: true}" id="id" type="hidden">
                         </div>
                     </div>

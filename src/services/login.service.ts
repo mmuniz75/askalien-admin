@@ -42,8 +42,13 @@ export class LoginService {
   }
 
   public getUser(){
-    const user = JSON.parse(localStorage.getItem(USER));
-    return user;
+    const user = new User()
+    user.login ="muniz"
+    user.role="ADMIN"
+
+    return user
+    //const user = JSON.parse(localStorage.getItem(USER));
+    //return user;
   }
  
   public logout(){

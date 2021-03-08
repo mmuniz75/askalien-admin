@@ -31,7 +31,10 @@ export class AnswerComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     if(id!=0){
       this.answerService.getAnswer(id).subscribe(
-        answer => this.answer = answer
+        answer => {
+          answer.videoNumber = answer.video.number
+          this.answer = answer
+        }  
       );
     }else
     this.answer = new AnswerDetail(); 
@@ -44,7 +47,7 @@ export class AnswerComponent implements OnInit {
     if(content)
       answer.content = content;
 
-    let id = answer.number;  
+    let id = answer.id;  
     if(this.answerService.isValid(answer)) 
 
       if(!id) {
@@ -59,11 +62,11 @@ export class AnswerComponent implements OnInit {
   }
 
   private resetAnswer(result,id:Number){
-    if(result && result.number){
+    if(result && result.id){
       this.messageService.clear();
       
       if(!id) {
-        id = result.number;
+        id = result.id;
         this.showSnackBar(`Answer ${id} created !`);
         this.answer = new AnswerDetail(); 
       }else{
