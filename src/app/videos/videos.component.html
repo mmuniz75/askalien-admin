@@ -32,7 +32,7 @@
                     <tbody>
                       <tr class="even pointer" *ngFor="let video of videos">
                         <td class=" ">{{video.number}}</td>
-                        <td class=" ">{{video.creationDate}}</td>
+                        <td class=" ">{{video.creationDate | date:"MM/dd/yyyy" }}</td>
                         <td class=" last" *ngIf="isAdmin()">
                           <a (click)="setVideo(video)" data-toggle="modal" data-target=".video-dialog" href="#">Edit</a>
                         </td>

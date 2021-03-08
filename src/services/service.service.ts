@@ -31,6 +31,7 @@ export class Service {
       }
 
     log(service:string,message: string) {
+        this.messageService.clear()
         this.messageService.add(`${service}: ${message}`);
     }
 
