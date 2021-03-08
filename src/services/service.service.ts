@@ -23,16 +23,23 @@ export class Service {
     handleError<T> (service:string,operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
           console.error(error);
-          this.log(service,`${operation} failed: ${error.message}`);
-          if(error.error && error.error.message)
-            this.log(service,`${operation} failed: ${error.error.message}`);
+          
+          
+          if(error.error && error.error.message) {
+            console.error(service,`${operation} failed: ${error.error.message}`)
+            this.log(error.error.message);
+          }  else if(error.message){
+            console.error(service,`${operation} failed: ${error.message}`)
+            this.log(error.message);
+          }
+                    
           return of(result as T);
         };
       }
 
-    log(service:string,message: string) {
+    log(message: string) {
         this.messageService.clear()
-        this.messageService.add(`${service}: ${message}`);
+        this.messageService.add(message);
     }
 
     public configServer():Observable<IServer>{
