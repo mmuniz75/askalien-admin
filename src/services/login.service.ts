@@ -26,7 +26,7 @@ export class LoginService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    const loginUrl = `http://${environment.SERVER_URL.replace('/admin','/login')}`;
+    const loginUrl = environment.AUTH_URL;
     
     return this.http.post<User>(loginUrl,user,options)
             .pipe(
@@ -39,16 +39,15 @@ export class LoginService {
     if(user.role) {
       localStorage.setItem(USER, JSON.stringify(user));
     }  
+
+    if(user.errorMessage) {
+      console.log(user.errorMessage)
+    }
   }
 
   public getUser(){
-    const user = new User()
-    user.login ="muniz"
-    user.role="ADMIN"
-
-    return user
-    //const user = JSON.parse(localStorage.getItem(USER));
-    //return user;
+    const user = JSON.parse(localStorage.getItem(USER));
+    return user;
   }
  
   public logout(){
@@ -61,7 +60,7 @@ export class LoginService {
   }
 
   public isAdmin():boolean{
-    return this.getUser().role=="ADMIN";
+    return this.getUser().role=="admin";
   }
   
 }
