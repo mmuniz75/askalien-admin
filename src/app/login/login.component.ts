@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.loginService.wakeServer();
     if(environment.production)
       this.service.configServer().subscribe(
         _ => console.log("server set to " + environment.SERVER_URL)

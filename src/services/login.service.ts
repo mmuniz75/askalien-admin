@@ -16,9 +16,15 @@ import { USER } from './consts';
 @Injectable()
 export class LoginService {
 
+  private user: User
+
   public redirectUrl : string = '/';
 
   constructor(protected http: HttpClient) {} 
+
+  public wakeServer() {
+    this.http.get('http://' + environment.SERVER_URL.replace('/admin','/wakeup')).subscribe()
+  }
 
   public login(user:User) : Observable<User>{
 
@@ -37,7 +43,7 @@ export class LoginService {
   
   private setUser(user){
     if(user.role) {
-      localStorage.setItem(USER, JSON.stringify(user));
+      this.user = user;
     }  
 
     if(user.errorMessage) {
@@ -46,21 +52,20 @@ export class LoginService {
   }
 
   public getUser(){
-    const user = JSON.parse(localStorage.getItem(USER));
-    return user;
+    return this.user;
   }
  
   public logout(){
-    localStorage.removeItem(USER);
+    this.user = null
     localStorage.removeItem("url_cash");
   }
 
   public isLogged():boolean{
-    return this.getUser()!=null;
+    return this.user!=null;
   }
 
   public isAdmin():boolean{
-    return this.getUser().role=="admin";
+    return this.user.role=="admin";
   }
   
 }

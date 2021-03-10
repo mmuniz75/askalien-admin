@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
@@ -28,6 +28,7 @@ import { ViewService } from '../services/view.service';
 import { Service } from '../services/service.service';
 import { LoginService } from '../services/login.service';
 import { AuthGuard } from '../services/auth-guard.service';
+import { AuthInterceptor } from '../auth.interceptor';
 
 
 const appRoutes: Routes = [
@@ -67,7 +68,10 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthGuard,LoginService,Service,QuestionService,AnswerService,VideoService,MessageService,CountryService,UserService,ViewService],
+  providers: [AuthGuard,LoginService,Service,QuestionService,AnswerService,VideoService,MessageService,CountryService,UserService,ViewService,
+              { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
