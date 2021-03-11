@@ -12,6 +12,8 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { USER } from './consts';
 
+import * as moment from 'moment'
+
 
 @Injectable()
 export class LoginService {
@@ -43,7 +45,10 @@ export class LoginService {
   
   private setUser(user){
     if(user.role) {
+      const date = moment()
+      user.expiresDate =  date.add(user.expires,'seconds').format()
       this.user = user;
+      localStorage.setItem(USER, JSON.stringify(user));
     }  
 
     if(user.errorMessage) {
@@ -52,20 +57,27 @@ export class LoginService {
   }
 
   public getUser(){
-    return this.user;
+    if(!this.user) {
+        const localUser = JSON.parse(localStorage.getItem(USER));
+        if(localUser)
+          this.user = localUser
+    }    
+
+    return this.user && moment() <= moment(this.user.expiresDate)?this.user:null;
   }
  
   public logout(){
     this.user = null
     localStorage.removeItem("url_cash");
+    localStorage.removeItem(USER);
   }
 
   public isLogged():boolean{
-    return this.user!=null;
+    return  this.getUser()!=null;
   }
 
   public isAdmin():boolean{
-    return this.user.role=="admin";
+    return this.getUser().role=="admin";
   }
   
 }

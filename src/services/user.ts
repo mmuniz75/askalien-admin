@@ -3,4 +3,6 @@ export class User {
     password: string
     role: string
     token: string
+    expiresDate : Date
+    expires : number
 }
