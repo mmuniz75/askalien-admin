@@ -9,6 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 import { HttpHeaders } from '@angular/common/http';
+import { IQuestion } from '../model/question';
 
 
 
@@ -22,7 +23,7 @@ export class LoginService {
   constructor(protected http: HttpClient) {} 
 
   public wakeServer() {
-    this.http.get('http://' + environment.SERVER_URL.replace('/admin','/wakeup')).subscribe()
+    this.http.get<IQuestion>('http://' + environment.SERVER_URL.replace('/admin','/wakeup')).subscribe()
   }
 
   public login(user:User) : Observable<User>{
