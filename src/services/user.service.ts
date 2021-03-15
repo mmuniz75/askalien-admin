@@ -14,12 +14,19 @@ export class UserService extends Service{
 
   private usersUrl = `http://${environment.SERVER_URL}/usage`;
   
-  public getUsers(year:number) : Observable<IUser[]>{
+  public getUsers(year) : Observable<IUser[]>{
 
-    return this.http.get<IUser[]>(`${this.usersUrl}/${year}`,this.getHttpOptions())
-                        .pipe(
-                          catchError(this.handleError('UserService','getUsers', []))
-                        );
+    if (year == 'All') {
+      return this.http.get<IUser[]>(`${this.usersUrl}`,this.getHttpOptions())
+                          .pipe(
+                            catchError(this.handleError('UserService','getUsers', []))
+                          );
+   } else {                       
+      return this.http.get<IUser[]>(`${this.usersUrl}/${year}`,this.getHttpOptions())
+                          .pipe(
+                            catchError(this.handleError('UserService','getUsers', []))
+                          );
+   }                       
   }
 
 

@@ -1,5 +1,6 @@
 export interface IUser {
     numberUsers: number,
     newUsers: number,
-    oldUsers: number
+    oldUsers: number,
+    monthName: string
 }

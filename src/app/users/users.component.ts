@@ -15,21 +15,24 @@ export class UsersComponent implements OnInit {
 
   constructor(private userService : UserService) { }
 
-  years : Number[];
+  years : String[];
   loading: boolean;
 
   ngOnInit() {
     this.loading = true;
     const currentYear = new Date().getFullYear();
+    const ALL = "All";
 
     this.years = new Array();
+    
     for(let year=currentYear;year>=2012;year--)
-        this.years.push(year);
+        this.years.push(new String(year));
 
+    this.years.push(ALL);    
     this.loadGraph(currentYear);
   }
-
-  loadGraph(year:number){
+  
+  loadGraph(year){
     this.userService.getUsers(year).subscribe(
       users => this.buidUsersArray(users)
     );
@@ -39,17 +42,19 @@ export class UsersComponent implements OnInit {
     let newUsers = [];
     let oldUsers = [];
     let totalUsers = [];
+    let barNames = [];
     for(let i=0;i<users.length;i++){
       newUsers[i] = users[i].newUsers;
       oldUsers[i] = users[i].oldUsers;
       totalUsers[i] = users[i].numberUsers;
+      barNames[i] = users[i].monthName;
     }
     
-    this.buildGraph(newUsers,oldUsers,totalUsers); 
+    this.buildGraph(newUsers,oldUsers,totalUsers,barNames); 
   }    
 
 
-  buildGraph(newUsers:Number[],oldUsers:Number[],totalUsers:Number[]) {
+  buildGraph(newUsers:Number[],oldUsers:Number[],totalUsers:Number[],barNames: String[]) {
     var chart = document.getElementById('user-chart-bar');
 
     if (chart) {
@@ -283,7 +288,8 @@ export class UsersComponent implements OnInit {
         xAxis: [
           {
             type: 'category',
-            data: ['Jan', 'Fev', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Agu', 'Sep', 'Oct', 'Nov', 'Dec']
+            //data: ['Jan', 'Fev', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Agu', 'Sep', 'Oct', 'Nov', 'Dec']
+            data : barNames
           }
         ],
         yAxis: [
