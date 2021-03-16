@@ -15,7 +15,7 @@ export class ViewsComponent implements OnInit {
 
   constructor(private viewService : ViewService) { }
 
-  years : Number[];
+  years : any[];
   loading: boolean;
 
   ngOnInit() {
@@ -26,6 +26,7 @@ export class ViewsComponent implements OnInit {
     for(let year=currentYear;year>=2012;year--)
         this.years.push(year);
 
+    this.years.push('All');
     this.loadGraph(currentYear);
   }
 
@@ -37,15 +38,18 @@ export class ViewsComponent implements OnInit {
 
   buidViewsArray(views:IView[]){
     let numbers = [];
+    let barNames = [];
+
     for(let i=0;i<views.length;i++){
       numbers[i] = views[i].number;
+      barNames[i] = views[i].monthName;
     }
     
-    this.buildGraph(numbers); 
+    this.buildGraph(numbers, barNames); 
   }    
 
 
-  buildGraph(numbers:Number[]) {
+  buildGraph(numbers:Number[], barNames: String[]) {
     var chart = document.getElementById('view-chart-bar');
 
     if (chart) {
@@ -279,7 +283,7 @@ export class ViewsComponent implements OnInit {
         xAxis: [
           {
             type: 'category',
-            data: ['Jan', 'Fev', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Agu', 'Sep', 'Oct', 'Nov', 'Dec']
+            data: barNames
           }
         ],
         yAxis: [

@@ -14,12 +14,21 @@ export class ViewService extends Service{
 
   private viewsUrl = `http://${environment.SERVER_URL}/view`;
   
-  public getViews(year:number) : Observable<IView[]>{
+  public getViews(year) : Observable<IView[]>{
 
-    return this.http.get<IView[]>(`${this.viewsUrl}/${year}`,this.getHttpOptions())
-                        .pipe(
-                          catchError(this.handleError('ViewService','getViews', []))
-                        );
+    if (year == 'All') {
+        return this.http.get<IView[]>(`${this.viewsUrl}`,this.getHttpOptions())
+        .pipe(
+          catchError(this.handleError('ViewService','getViews', []))
+        );
+   } else {                       
+      return this.http.get<IView[]>(`${this.viewsUrl}/${year}`,this.getHttpOptions())
+      .pipe(
+        catchError(this.handleError('ViewService','getViews', []))
+      );
+   }        
+
+   
   }
 
 
