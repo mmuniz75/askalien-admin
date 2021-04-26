@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { environment } from '../environments/environment';
 
+import { USER } from '../services/consts';
+
 
 @Component({
   selector: 'app-root',
@@ -18,11 +20,12 @@ export class AppComponent {
  
   logOut(){
     this.loginService.logout();
+    localStorage.removeItem(USER);
     this.router.navigate(['/login']);
   }
 
   getUserName():string{
-    return this.loginService.getUser().login;
+    return this.loginService.user.login;
   } 
 
   isLogin():boolean{

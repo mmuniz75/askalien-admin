@@ -9,16 +9,22 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 import { HttpHeaders } from '@angular/common/http';
+import { IQuestion } from '../model/question';
 
-import { USER } from './consts';
 
 
 @Injectable()
 export class LoginService {
 
+  public user: User
+
   public redirectUrl : string = '/';
 
   constructor(protected http: HttpClient) {} 
+
+  public wakeServer() {
+    this.http.get<IQuestion>('http://' + environment.SERVER_URL.replace('/admin','/wakeup')).subscribe()
+  }
 
   public login(user:User) : Observable<User>{
 
@@ -26,7 +32,7 @@ export class LoginService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    const loginUrl = `http://${environment.SERVER_URL.replace('/admin','/login')}`;
+    const loginUrl = environment.AUTH_URL;
     
     return this.http.post<User>(loginUrl,user,options)
             .pipe(
@@ -37,26 +43,24 @@ export class LoginService {
   
   private setUser(user){
     if(user.role) {
-      localStorage.setItem(USER, JSON.stringify(user));
+      this.user = user;
     }  
-  }
 
-  public getUser(){
-    const user = JSON.parse(localStorage.getItem(USER));
-    return user;
+    if(user.errorMessage) {
+      console.log(user.errorMessage)
+    }
   }
  
   public logout(){
-    localStorage.removeItem(USER);
-    localStorage.removeItem("url_cash");
+    this.user = null
   }
 
   public isLogged():boolean{
-    return this.getUser()!=null;
+    return  this.user!=null;
   }
 
   public isAdmin():boolean{
-    return this.getUser().role=="ADMIN";
+    return this.user.role=="admin";
   }
   
 }

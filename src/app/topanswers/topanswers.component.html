@@ -43,11 +43,11 @@
 
                 <tbody>
                   <tr class="even pointer" *ngFor="let answer of answers">
-                    <td class=" ">{{answer.number}}</td>
+                    <td class=" ">{{answer.id}}</td>
                     <td class=" ">{{answer.question}}</td>
                     <td class=" ">{{answer.clicks}}</td>
                     <td class=" last">
-                      <a routerLink="/questions/{{answer.number}}">Questions</a>
+                      <a routerLink="/questions/{{answer.id}}">Questions</a>
                     </td>
                   </tr>
 

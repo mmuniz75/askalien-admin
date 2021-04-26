@@ -69,7 +69,7 @@ export class AnswerService extends Service{
 
   public isValid(answer:AnswerDetail):boolean{
     if (answer.question && answer.question.length > 0
-        && answer.video && 
+        && answer.videoNumber && 
         answer.content && answer.content.length > 0)
         return true;
     else 

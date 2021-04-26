@@ -1,17 +1,11 @@
 import { Video } from './video';
 
 export class AnswerDetail {
-    number: Number
+    id: Number
     question: String
     content: String
-    video: {
-        number: Number
-    }
+    videoNumber: Number
     link: String
-
-    constructor(){
-        this.video = new Video();
-    }
-
+    video: Video
     
 }

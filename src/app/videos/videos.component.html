@@ -32,7 +32,7 @@
                     <tbody>
                       <tr class="even pointer" *ngFor="let video of videos">
                         <td class=" ">{{video.number}}</td>
-                        <td class=" ">{{video.formatedCreationDate | date:"MM/dd/yyyy"}}</td>
+                        <td class=" ">{{video.creationDate | date:"MM/dd/yyyy" }}</td>
                         <td class=" last" *ngIf="isAdmin()">
                           <a (click)="setVideo(video)" data-toggle="modal" data-target=".video-dialog" href="#">Edit</a>
                         </td>
@@ -53,16 +53,16 @@
   <div class="modal fade video-dialog" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
             </button>
             <h4 class="modal-title" id="myModalLabel2" *ngIf="video && video.id==null">New Video</h4>
             <h4 class="modal-title" id="myModalLabel2" *ngIf="video && video.id!=null">Edit Video {{video.id}}</h4>
+            
           </div>
           <form class="form-horizontal form-label-left" novalidate >
             <div class="modal-body">
-          
+                <app-message></app-message>
                   <div class="item form-group">
                     <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">Number
                       <span class="required">*</span>
@@ -78,7 +78,7 @@
                     </label>
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class='input-group date' id='myDatepicker'>
-                            <input *ngIf='video' [(ngModel)]='video.formatedCreationDate' [ngModelOptions]="{standalone: true}" id="date" class="form-control col-md-7 col-xs-12" name="date" required="required" type="date">
+                            <input *ngIf='video' [(ngModel)]='video.creationDate' [ngModelOptions]="{standalone: true}" id="date" class="form-control col-md-7 col-xs-12" name="date" required="required" type="date">
                             <input *ngIf='video' [(ngModel)]='video.id' [ngModelOptions]="{standalone: true}" id="id" type="hidden">
                         </div>
                     </div>

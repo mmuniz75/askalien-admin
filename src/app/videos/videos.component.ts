@@ -43,9 +43,6 @@ export class VideosComponent implements OnInit {
 
     saveVideo():void{
       if(this.videoService.isValid(this.video)){
-        var creationDate = new Date(this.video.formatedCreationDate);
-        creationDate.setDate(creationDate.getDate() + 1);
-        this.video.creationDate = creationDate;
         const newVideo:boolean = this.video.id?false:true;
         
         this.videoService.saveVideo(this.video).subscribe(
@@ -56,10 +53,11 @@ export class VideosComponent implements OnInit {
     }
     
     updateList(video:Video,isNew:boolean){
-      if(isNew)
+      if(isNew && video)
         this.videos.splice(0,0,video);
       
-      this.closeModal.nativeElement.click();
+      if(video)
+        this.closeModal.nativeElement.click();
     }
 
     isAdmin():boolean{

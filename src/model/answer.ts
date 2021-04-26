@@ -1,5 +1,6 @@
 export interface IAnswer {
-    number: Number,
+    id: Number,
     question: String,
-    clicks: Number
+    clicks: Number,
+    videoNumber: Number
 }
