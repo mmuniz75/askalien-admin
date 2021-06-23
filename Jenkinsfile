@@ -14,6 +14,11 @@ pipeline {
                   branch: "${branch}")
          }
       }
+      stage('Install Modules') {
+         steps {
+            sh 'npm install'
+         }
+      }
       stage('Compile Typescript') {
          steps {
             sh 'ng build --prod --build-optimizer'
