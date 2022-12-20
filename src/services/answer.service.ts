@@ -14,12 +14,12 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class AnswerService extends Service{
 
-  private topAnswersUrl = `http://${environment.SERVER_URL}/topanswers`;
-  private answersUrl = `http://${environment.SERVER_URL}/answers`;
-  private answerUrl = `http://${environment.SERVER_URL}/answer`;
-  private answerUrl2 = `http://${environment.SERVER_URL}2/answer`;
-  private answerSummaryUrl = `http://${environment.SERVER_URL}/summary-answer`;
-  private answersListUrl = `http://${environment.SERVER_URL.replace('/admin','')}/answers`;
+  private topAnswersUrl = `${environment.SERVER_URL}/topanswers`;
+  private answersUrl = `${environment.SERVER_URL}/answers`;
+  private answerUrl = `${environment.SERVER_URL}/answer`;
+  private answerUrl2 = `${environment.SERVER_URL}2/answer`;
+  private answerSummaryUrl = `${environment.SERVER_URL}/summary-answer`;
+  private answersListUrl = `${environment.SERVER_URL.replace('/admin','')}/answers`;
    
   
   public getTopAnswers(feedback:Boolean) : Observable<IAnswer[]>{

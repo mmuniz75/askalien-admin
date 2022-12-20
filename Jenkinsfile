@@ -26,7 +26,7 @@ pipeline {
       }
       stage('Sync with AWS') {
          steps {
-            sh "aws s3 sync dist s3://admin.askalien.muniz-api.top/ --delete"
+            sh "aws s3 sync dist s3://askalien-admin.top/ --delete"
          }
       }
    }

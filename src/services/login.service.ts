@@ -23,7 +23,7 @@ export class LoginService {
   constructor(protected http: HttpClient) {} 
 
   public wakeServer() {
-    this.http.get<IQuestion>('http://' + environment.SERVER_URL.replace('/admin','/wakeup')).subscribe()
+    this.http.get<IQuestion>(environment.SERVER_URL.replace('/admin','/wakeup')).subscribe()
   }
 
   public login(user:User) : Observable<User>{

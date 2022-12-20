@@ -13,8 +13,8 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class VideoService extends Service{
 
-  private videosUrl = `http://${environment.SERVER_URL}/videos`;
-  private videoUrl = `http://${environment.SERVER_URL}2/video`;
+  private videosUrl = `${environment.SERVER_URL}/videos`;
+  private videoUrl = `${environment.SERVER_URL}2/video`;
    
     
   public getVideos() : Observable<Video[]>{

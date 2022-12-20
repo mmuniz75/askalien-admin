@@ -17,10 +17,10 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class QuestionService extends Service {
 
-  private questionsUrl = `http://${environment.SERVER_URL}/questions`;
-  private questionUrl = `http://${environment.SERVER_URL}/question`;
-  private statisticUrl = `http://${environment.SERVER_URL}/statistics`;
-  private questionCountUrl = `http://${environment.SERVER_URL}/questions/count`;
+  private questionsUrl = `${environment.SERVER_URL}/questions`;
+  private questionUrl = `${environment.SERVER_URL}/question`;
+  private statisticUrl = `${environment.SERVER_URL}/statistics`;
+  private questionCountUrl = `${environment.SERVER_URL}/questions/count`;
 
   public getQuestions() : Observable<IQuestion[]>{
     

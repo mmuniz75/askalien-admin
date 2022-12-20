@@ -11,8 +11,8 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class CountryService extends Service{
 
-  private countriesUrl = `http://${environment.SERVER_URL}/countries`;
-  private countriesCodeUrl = `http://${environment.SERVER_URL}/countriesCode`;
+  private countriesUrl = `${environment.SERVER_URL}/countries`;
+  private countriesCodeUrl = `${environment.SERVER_URL}/countriesCode`;
 
   public getCountries() : Observable<ICountry[]>{
 

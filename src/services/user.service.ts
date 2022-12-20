@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class UserService extends Service{
 
-  private usersUrl = `http://${environment.SERVER_URL}/usage`;
+  private usersUrl = `${environment.SERVER_URL}/usage`;
   
   public getUsers(year) : Observable<IUser[]>{
 

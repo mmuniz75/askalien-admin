@@ -5,7 +5,8 @@
 
 export const environment = {
   production: false,
-  SERVER_URL : "localhost:8080/admin",
+  //SERVER_URL : "http://localhost:8080/admin",
+  SERVER_URL : "https://askalien-admin.fly.dev/admin",
   AUTH_URL : " https://iloiojve4d.execute-api.us-east-1.amazonaws.com/v1/api/users"
  
 };

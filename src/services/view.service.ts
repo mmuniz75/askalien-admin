@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class ViewService extends Service{
 
-  private viewsUrl = `http://${environment.SERVER_URL}/view`;
+  private viewsUrl = `${environment.SERVER_URL}/view`;
   
   public getViews(year) : Observable<IView[]>{
 
